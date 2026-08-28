@@ -42,3 +42,4 @@ next-env.d.ts
 
 # Large audio file
 /public/audio/pazhagu-thamizh-arivom.mp3
+/public/books/pdf/

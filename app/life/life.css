@@ -1,0 +1,666 @@
+/* ========================================
+   HIS LIFE PAGE
+======================================== */
+
+.his-life-page {
+  width: 100%;
+  overflow-x: hidden;
+
+  background: var(--background);
+}
+
+
+/* ========================================
+   PAGE HERO
+======================================== */
+
+.life-hero {
+  position: relative;
+
+  padding: 150px 8% 110px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--dark-brown),
+      #3d2d21
+    );
+
+  color: var(--paper);
+
+  overflow: hidden;
+}
+
+.life-hero::after {
+  content: "";
+
+  position: absolute;
+
+  width: 450px;
+  height: 450px;
+
+  right: -120px;
+  top: -150px;
+
+  border: 1px solid rgba(176, 138, 62, 0.25);
+  border-radius: 50%;
+}
+
+.life-hero-container {
+  position: relative;
+  z-index: 2;
+
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.life-hero-label {
+  display: block;
+
+  margin-bottom: 18px;
+
+  color: var(--gold-light);
+
+  font-size: 0.85rem;
+  font-weight: 700;
+
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.life-hero-title {
+  margin: 0;
+
+  color: var(--paper);
+
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 700;
+
+  line-height: 1.1;
+}
+
+.life-hero-subtitle {
+  margin-top: 20px;
+
+  color: var(--gold-light);
+
+  font-size: clamp(1rem, 2vw, 1.3rem);
+}
+
+
+/* ========================================
+   GENERAL LIFE SECTION
+======================================== */
+
+.life-section {
+  width: 100%;
+
+  padding: 100px 8%;
+}
+
+.life-container {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+}
+
+.life-section-dark {
+  background: var(--dark-brown);
+  color: var(--paper);
+}
+
+.life-section-paper {
+  background: var(--paper);
+}
+
+.life-section-title {
+  margin: 0 0 12px;
+
+  color: var(--dark-brown);
+
+  font-size: clamp(2rem, 5vw, 3.8rem);
+
+  line-height: 1.2;
+}
+
+.life-section-dark .life-section-title {
+  color: var(--paper);
+}
+
+.life-section-english {
+  display: block;
+
+  margin-bottom: 35px;
+
+  color: var(--gold);
+
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+
+/* ========================================
+   INTRODUCTION
+======================================== */
+
+.life-introduction {
+  max-width: 900px;
+}
+
+.life-credit {
+  display: inline-block;
+
+  margin-bottom: 30px;
+
+  padding: 8px 16px;
+
+  background: rgba(176, 138, 62, 0.12);
+
+  border-left: 3px solid var(--gold);
+
+  color: #6b5744;
+
+  font-size: 0.9rem;
+}
+
+.life-introduction p {
+  color: #4d4034;
+
+  font-size: 1.1rem;
+  line-height: 2;
+}
+
+
+/* ========================================
+   BIOGRAPHY CONTENT CARDS
+======================================== */
+
+.life-info-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 30px;
+}
+
+.life-info-card {
+  padding: 40px;
+
+  background: var(--paper);
+
+  border: 1px solid rgba(176, 138, 62, 0.15);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.life-info-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow: 0 20px 45px rgba(37, 28, 21, 0.08);
+}
+
+.life-info-number {
+  display: block;
+
+  margin-bottom: 18px;
+
+  color: var(--gold);
+
+  font-size: 0.85rem;
+  font-weight: 700;
+
+  letter-spacing: 3px;
+}
+
+.life-info-title {
+  margin: 0 0 5px;
+
+  color: var(--dark-brown);
+
+  font-size: 2rem;
+}
+
+.life-info-english {
+  margin-bottom: 25px;
+
+  color: var(--gold);
+
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.life-info-content {
+  color: #554638;
+
+  font-size: 1rem;
+  line-height: 2;
+}
+
+.life-info-content p {
+  margin: 0 0 20px;
+}
+
+.life-info-content p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* ========================================
+   BIRTH SECTION
+======================================== */
+
+.birth-highlight {
+  position: relative;
+
+  padding: 50px;
+
+  background: var(--dark-brown);
+
+  color: var(--paper);
+
+  overflow: hidden;
+}
+
+.birth-highlight::before {
+  content: "1928";
+
+  position: absolute;
+
+  right: 30px;
+  bottom: -30px;
+
+  color: rgba(176, 138, 62, 0.1);
+
+  font-size: 9rem;
+  font-weight: 700;
+}
+
+.birth-content {
+  position: relative;
+  z-index: 2;
+
+  max-width: 800px;
+}
+
+.birth-date {
+  color: var(--gold-light);
+
+  font-size: 1.2rem;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+.birth-text {
+  margin-top: 20px;
+
+  color: #e8ded1;
+
+  font-size: 1.05rem;
+  line-height: 2;
+}
+
+
+/* ========================================
+   HONOURS TIMELINE
+======================================== */
+
+.honours-section {
+  background: var(--paper);
+}
+
+.timeline {
+  position: relative;
+
+  max-width: 950px;
+
+  margin: 70px auto 0;
+}
+
+.timeline::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+
+  width: 2px;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      var(--gold),
+      transparent
+    );
+
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+
+  width: 50%;
+
+  padding: 0 55px 60px;
+}
+
+.timeline-item:nth-child(odd) {
+  left: 0;
+
+  text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+  left: 50%;
+
+  text-align: left;
+}
+
+.timeline-item::before {
+  content: "";
+
+  position: absolute;
+
+  top: 5px;
+
+  width: 16px;
+  height: 16px;
+
+  background: var(--gold);
+
+  border: 4px solid var(--paper);
+  border-radius: 50%;
+
+  box-shadow: 0 0 0 2px var(--gold);
+}
+
+.timeline-item:nth-child(odd)::before {
+  right: -8px;
+}
+
+.timeline-item:nth-child(even)::before {
+  left: -8px;
+}
+
+.timeline-year {
+  display: inline-block;
+
+  margin-bottom: 12px;
+
+  color: var(--gold);
+
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.timeline-content {
+  padding: 25px 28px;
+
+  background: #f8f3ea;
+
+  border: 1px solid rgba(176, 138, 62, 0.12);
+
+  color: #4d4034;
+
+  font-size: 1rem;
+  line-height: 1.9;
+
+  box-shadow: 0 10px 25px rgba(37, 28, 21, 0.04);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.timeline-content:hover {
+  transform: translateY(-5px);
+
+  box-shadow: 0 20px 40px rgba(37, 28, 21, 0.1);
+}
+
+
+/* ========================================
+   BOOKS SECTION
+======================================== */
+
+.books-section {
+  background: var(--dark-brown);
+}
+
+.books-section .life-section-title {
+  color: var(--paper);
+}
+
+.books-intro {
+  max-width: 800px;
+
+  margin-bottom: 50px;
+
+  color: #d9cdbd;
+
+  font-size: 1.05rem;
+  line-height: 2;
+}
+
+.books-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+}
+
+.book-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-height: 100px;
+
+  padding: 22px;
+
+  background: rgba(255, 253, 247, 0.06);
+
+  border: 1px solid rgba(176, 138, 62, 0.2);
+
+  color: var(--paper);
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.book-card:hover {
+  background: rgba(176, 138, 62, 0.12);
+
+  border-color: var(--gold);
+
+  transform: translateY(-5px);
+}
+
+.book-icon {
+  flex-shrink: 0;
+
+  color: var(--gold-light);
+
+  font-size: 1.4rem;
+}
+
+.book-title {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+
+/* ========================================
+   BOOK STORE / CONTACT
+======================================== */
+
+.bookstore-section {
+  background: var(--background);
+}
+
+.bookstore-card {
+  max-width: 850px;
+
+  margin: 0 auto;
+
+  padding: 55px;
+
+  text-align: center;
+
+  background: var(--paper);
+
+  border-top: 4px solid var(--gold);
+
+  box-shadow: 0 20px 50px rgba(37, 28, 21, 0.08);
+}
+
+.bookstore-title {
+  margin: 0 0 20px;
+
+  color: var(--dark-brown);
+
+  font-size: 2rem;
+}
+
+.bookstore-name {
+  color: var(--gold);
+
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.bookstore-address {
+  margin-top: 15px;
+
+  color: #675646;
+
+  line-height: 1.9;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1024px) {
+  .life-section {
+    padding: 80px 6%;
+  }
+
+  .life-hero {
+    padding: 130px 6% 90px;
+  }
+
+  .life-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .books-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* ========================================
+   MOBILE TIMELINE
+======================================== */
+
+@media (max-width: 768px) {
+  .life-section {
+    padding: 70px 20px;
+  }
+
+  .life-hero {
+    padding: 120px 20px 80px;
+  }
+
+  .life-hero::after {
+    width: 250px;
+    height: 250px;
+
+    right: -100px;
+    top: -80px;
+  }
+
+  .life-info-card {
+    padding: 28px 22px;
+  }
+
+  .birth-highlight {
+    padding: 35px 25px;
+  }
+
+  .birth-highlight::before {
+    font-size: 5rem;
+
+    right: 15px;
+  }
+
+  .timeline {
+    margin-top: 50px;
+
+    padding-left: 35px;
+  }
+
+  .timeline::before {
+    left: 8px;
+
+    transform: none;
+  }
+
+  .timeline-item,
+  .timeline-item:nth-child(odd),
+  .timeline-item:nth-child(even) {
+    left: 0;
+
+    width: 100%;
+
+    padding: 0 0 45px 30px;
+
+    text-align: left;
+  }
+
+  .timeline-item::before,
+  .timeline-item:nth-child(odd)::before,
+  .timeline-item:nth-child(even)::before {
+    left: -35px;
+    right: auto;
+  }
+
+  .timeline-content {
+    padding: 22px;
+  }
+
+  .books-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .book-card {
+    min-height: auto;
+  }
+
+  .bookstore-card {
+    padding: 35px 22px;
+  }
+
+  .life-introduction p,
+  .life-info-content,
+  .birth-text {
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+}
