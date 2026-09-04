@@ -1,0 +1,963 @@
+/* =====================================================
+   REMEMBRANCE PAGE
+   FINAL UPDATED CSS
+   Matches Books and remaining site sections
+===================================================== */
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.remembrance-page {
+  min-height: 100vh;
+
+  background: #f8f5ef;
+
+  color: #2d3940;
+
+  font-family: inherit;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.remembrance-hero {
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 68px 20px 60px;
+
+  text-align: center;
+
+  background:
+    radial-gradient(
+      circle at top center,
+      rgba(170, 133, 78, 0.08),
+      transparent 50%
+    ),
+    linear-gradient(
+      180deg,
+      #f8f5ef 0%,
+      #f4f0e8 100%
+    );
+
+  border-bottom: 1px solid #ded5c6;
+}
+
+
+.remembrance-hero-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.16),
+      transparent
+    );
+}
+
+
+.remembrance-hero-content {
+  position: relative;
+
+  z-index: 1;
+
+  max-width: 1000px;
+
+  margin: 0 auto;
+}
+
+
+/* =====================================================
+   SHARED KICKER
+===================================================== */
+
+.remembrance-kicker {
+  margin: 0 0 10px;
+
+  font-size: 0.68rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.24em;
+
+  color: #8f6e3f;
+}
+
+
+/* =====================================================
+   HERO TITLE
+===================================================== */
+
+.remembrance-hero h1 {
+  margin: 0;
+
+  font-size: clamp(2.2rem, 4.2vw, 3.8rem);
+
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  color: #2d3940;
+}
+
+
+.remembrance-divider {
+  width: 54px;
+
+  height: 2px;
+
+  margin: 18px auto;
+
+  background: #9b7845;
+}
+
+
+.remembrance-english-title {
+  margin: 0 0 16px;
+
+  font-size: clamp(0.88rem, 1.5vw, 1.05rem);
+
+  letter-spacing: 0.05em;
+
+  color: #756858;
+}
+
+
+.remembrance-hero h2 {
+  margin: 0;
+
+  font-size: clamp(1.05rem, 1.9vw, 1.4rem);
+
+  font-weight: 600;
+
+  line-height: 1.55;
+
+  color: #37434a;
+}
+
+
+.remembrance-dates {
+  margin: 13px 0 0;
+
+  font-size: 0.85rem;
+
+  letter-spacing: 0.04em;
+
+  color: #7b6e5f;
+}
+
+
+/* =====================================================
+   GALLERY SECTION
+===================================================== */
+
+.remembrance-gallery-section {
+  width: min(1280px, calc(100% - 48px));
+
+  margin: 0 auto;
+
+  padding: 64px 0 78px;
+}
+
+
+.remembrance-gallery-header {
+  max-width: 720px;
+
+  margin: 0 auto 40px;
+
+  text-align: center;
+}
+
+
+.remembrance-gallery-header h2 {
+  margin: 0 0 12px;
+
+  font-size: clamp(1.55rem, 3vw, 2.2rem);
+
+  font-weight: 700;
+
+  line-height: 1.3;
+
+  color: #2d3940;
+}
+
+
+.remembrance-gallery-header > p:last-child {
+  margin: 0;
+
+  font-size: 0.92rem;
+
+  line-height: 1.7;
+
+  color: #756d62;
+}
+
+
+/* =====================================================
+   GALLERY GRID
+===================================================== */
+
+.remembrance-gallery {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  align-items: start;
+
+  gap: 38px 28px;
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.remembrance-card {
+  display: block;
+
+  width: 100%;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  appearance: none;
+
+  font-family: inherit;
+
+  transition: transform 0.3s ease;
+}
+
+
+.remembrance-card:hover {
+  transform: translateY(-4px);
+}
+
+
+/* =====================================================
+   IMAGE
+   FULL IMAGE VISIBLE
+===================================================== */
+
+.remembrance-image-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  background: #f3eee7;
+
+  box-shadow:
+    0 8px 24px rgba(37, 45, 49, 0.09);
+
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+.remembrance-card:hover .remembrance-image-wrapper {
+  box-shadow:
+    0 16px 36px rgba(37, 45, 49, 0.15);
+}
+
+
+.remembrance-image {
+  display: block;
+
+  width: 100%;
+
+  height: auto;
+
+  object-fit: contain;
+
+  background: #f3eee7;
+
+  transition: transform 0.4s ease;
+}
+
+
+.remembrance-card:hover .remembrance-image {
+  transform: scale(1.015);
+}
+
+
+/* =====================================================
+   IMAGE HOVER OVERLAY
+===================================================== */
+
+.remembrance-image-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(31, 40, 45, 0.46);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: opacity 0.3s ease;
+}
+
+
+.remembrance-card:hover .remembrance-image-overlay {
+  opacity: 1;
+}
+
+
+.remembrance-image-overlay span {
+  padding: 9px 17px;
+
+  border: 1px solid rgba(255, 255, 255, 0.75);
+
+  background: rgba(35, 48, 56, 0.35);
+
+  color: #ffffff;
+
+  font-size: 0.78rem;
+
+  font-weight: 600;
+
+  transform: translateY(8px);
+
+  transition: transform 0.3s ease;
+}
+
+
+.remembrance-card:hover .remembrance-image-overlay span {
+  transform: translateY(0);
+}
+
+
+/* =====================================================
+   CARD CAPTION
+   BELOW IMAGE ONLY
+===================================================== */
+
+.remembrance-card-content {
+  padding: 14px 8px 0;
+
+  background: transparent;
+
+  text-align: center;
+}
+
+
+.remembrance-card-content h3 {
+  margin: 0;
+
+  color: #37434a;
+
+  font-size: clamp(0.92rem, 1.2vw, 1.05rem);
+
+  font-weight: 600;
+
+  line-height: 1.5;
+}
+
+
+/* Hide subtitle */
+
+.remembrance-card-content p {
+  display: none;
+}
+
+
+/* =====================================================
+   QUOTE
+===================================================== */
+
+.remembrance-quote {
+  padding: 28px 20px 34px;
+
+  text-align: center;
+
+  background: transparent;
+}
+
+
+.remembrance-quote-inner {
+  max-width: none;
+
+  margin: 0;
+
+  padding: 0;
+}
+
+
+.quote-mark {
+  display: none;
+}
+
+
+.remembrance-quote-inner p {
+  margin: 0;
+
+  color: #75624b;
+
+  font-size: clamp(0.92rem, 1.4vw, 1.15rem);
+
+  font-weight: 500;
+
+  font-style: italic;
+
+  line-height: 1.5;
+
+  white-space: nowrap;
+}
+
+
+.remembrance-quote-inner::after {
+  display: none;
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.remembrance-modal {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 65px 95px 45px;
+
+  background: rgba(15, 21, 24, 0.96);
+
+  animation: remembranceModalFade 0.25s ease;
+}
+
+
+/* =====================================================
+   MODAL CONTENT
+===================================================== */
+
+.remembrance-modal-content {
+  position: relative;
+
+  width: 100%;
+
+  height: 100%;
+
+  max-width: none;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* =====================================================
+   MODAL IMAGE AREA
+===================================================== */
+
+.remembrance-modal-image-wrapper {
+  width: 100%;
+
+  height: calc(100vh - 145px);
+
+  max-height: calc(100vh - 145px);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: visible;
+
+  background: transparent;
+}
+
+
+/* =====================================================
+   MODAL IMAGE
+   FORCE LARGE DISPLAY
+===================================================== */
+
+.remembrance-modal-image {
+  display: block;
+
+  /*
+    The image is controlled primarily
+    by its height so portrait images
+    become much larger.
+  */
+
+  width: auto !important;
+
+  height: 78vh !important;
+
+  max-width: 88vw !important;
+
+  max-height: 78vh !important;
+
+  min-width: 0;
+
+  min-height: 0;
+
+  object-fit: contain;
+
+  background: transparent;
+
+  box-shadow:
+    0 16px 55px rgba(0, 0, 0, 0.45);
+}
+
+
+/* =====================================================
+   MODAL CAPTION
+===================================================== */
+
+.remembrance-modal-caption {
+  flex-shrink: 0;
+
+  width: 100%;
+
+  padding: 12px 20px 0;
+
+  text-align: center;
+}
+
+
+.remembrance-modal-number {
+  margin: 0 0 5px;
+
+  color: rgba(255, 255, 255, 0.58);
+
+  font-size: 0.72rem;
+
+  letter-spacing: 0.12em;
+}
+
+
+.remembrance-modal-caption h2 {
+  margin: 0;
+
+  color: #f5f1ea;
+
+  font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+
+  font-weight: 600;
+
+  line-height: 1.45;
+}
+
+
+/* =====================================================
+   CLOSE BUTTON
+===================================================== */
+
+.remembrance-modal-close {
+  position: fixed;
+
+  top: 20px;
+
+  right: 28px;
+
+  z-index: 10001;
+
+  width: 52px;
+
+  height: 52px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.28);
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  color: #ffffff;
+
+  font-size: 2rem;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+.remembrance-modal-close:hover {
+  background: rgba(255, 255, 255, 0.16);
+
+  transform: rotate(90deg);
+}
+
+
+/* =====================================================
+   MODAL NAVIGATION
+===================================================== */
+
+.remembrance-modal-nav {
+  position: fixed;
+
+  top: 50%;
+
+  z-index: 10001;
+
+  width: 62px;
+
+  height: 62px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  border-radius: 50%;
+
+  background: rgba(15, 21, 24, 0.55);
+
+  color: #ffffff;
+
+  font-size: 1.8rem;
+
+  cursor: pointer;
+
+  transform: translateY(-50%);
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+.remembrance-modal-nav:hover {
+  background: rgba(255, 255, 255, 0.14);
+
+  transform: translateY(-50%) scale(1.08);
+}
+
+
+.remembrance-modal-prev {
+  left: 30px;
+}
+
+
+.remembrance-modal-next {
+  right: 30px;
+}
+
+
+/* =====================================================
+   MODAL ANIMATION
+===================================================== */
+
+@keyframes remembranceModalFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1024px) {
+
+  .remembrance-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+
+  .remembrance-gallery-section {
+    width: min(100% - 36px, 1280px);
+  }
+
+
+  .remembrance-modal {
+    padding: 65px 75px 40px;
+  }
+
+
+  .remembrance-modal-image {
+    height: 76vh !important;
+
+    max-height: 76vh !important;
+
+    max-width: 86vw !important;
+  }
+
+
+  .remembrance-modal-nav {
+    width: 54px;
+
+    height: 54px;
+  }
+
+
+  .remembrance-modal-prev {
+    left: 18px;
+  }
+
+
+  .remembrance-modal-next {
+    right: 18px;
+  }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .remembrance-hero {
+    padding: 56px 18px 52px;
+  }
+
+
+  .remembrance-hero h1 {
+    font-size: clamp(2rem, 10vw, 2.8rem);
+  }
+
+
+  .remembrance-hero h2 {
+    font-size: 1rem;
+  }
+
+
+  .remembrance-gallery-section {
+    width: min(100% - 32px, 1280px);
+
+    padding: 52px 0 65px;
+  }
+
+
+  .remembrance-gallery-header {
+    margin-bottom: 32px;
+  }
+
+
+  .remembrance-quote-inner p {
+    white-space: normal;
+
+    font-size: 0.95rem;
+
+    line-height: 1.6;
+  }
+
+
+  /* =========================
+     MOBILE MODAL
+  ========================= */
+
+  .remembrance-modal {
+    padding: 58px 10px 25px;
+  }
+
+
+  .remembrance-modal-content {
+    width: 100vw;
+
+    height: 100vh;
+  }
+
+
+  .remembrance-modal-image-wrapper {
+    width: 100vw;
+
+    height: calc(100vh - 125px);
+
+    max-height: calc(100vh - 125px);
+
+    padding: 0;
+  }
+
+
+  /*
+    IMPORTANT:
+    Force portrait images to
+    use most of the mobile screen.
+  */
+
+  .remembrance-modal-image {
+    width: auto !important;
+
+    height: 76vh !important;
+
+    max-width: 94vw !important;
+
+    max-height: 76vh !important;
+  }
+
+
+  .remembrance-modal-caption {
+    padding: 9px 12px 0;
+  }
+
+
+  .remembrance-modal-caption h2 {
+    font-size: 0.92rem;
+  }
+
+
+  .remembrance-modal-number {
+    font-size: 0.68rem;
+  }
+
+
+  .remembrance-modal-close {
+    top: 12px;
+
+    right: 14px;
+
+    width: 46px;
+
+    height: 46px;
+
+    font-size: 1.7rem;
+  }
+
+
+  .remembrance-modal-nav {
+    width: 46px;
+
+    height: 46px;
+
+    font-size: 1.35rem;
+  }
+
+
+  .remembrance-modal-prev {
+    left: 8px;
+  }
+
+
+  .remembrance-modal-next {
+    right: 8px;
+  }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 640px) {
+
+  .remembrance-gallery {
+    grid-template-columns: 1fr;
+
+    gap: 32px;
+  }
+
+
+  .remembrance-card-content {
+    padding-top: 13px;
+  }
+
+
+  .remembrance-quote {
+    padding: 25px 18px 30px;
+  }
+
+
+  /*
+    Give the image maximum space
+    on smaller phones
+  */
+
+  .remembrance-modal {
+    padding: 55px 5px 20px;
+  }
+
+
+  .remembrance-modal-image-wrapper {
+    height: calc(100vh - 110px);
+
+    max-height: calc(100vh - 110px);
+  }
+
+
+  .remembrance-modal-image {
+    height: 78vh !important;
+
+    max-height: 78vh !important;
+
+    max-width: 96vw !important;
+  }
+
+
+  .remembrance-modal-caption {
+    padding-top: 7px;
+  }
+
+
+  .remembrance-modal-close {
+    top: 10px;
+
+    right: 10px;
+
+    width: 42px;
+
+    height: 42px;
+  }
+
+
+  .remembrance-modal-nav {
+    width: 42px;
+
+    height: 42px;
+
+    font-size: 1.25rem;
+  }
+
+
+  .remembrance-modal-prev {
+    left: 5px;
+  }
+
+
+  .remembrance-modal-next {
+    right: 5px;
+  }
+}

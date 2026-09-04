@@ -1,0 +1,840 @@
+/* =====================================================
+   GOOGLE / TAMIL FONT FALLBACK
+===================================================== */
+
+.gallery-page {
+  width: 100%;
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at top center,
+      rgba(201, 171, 104, 0.12),
+      transparent 42%
+    ),
+    #f7f4ee;
+  color: #263946;
+}
+
+
+/* =====================================================
+   GLOBAL RESET FOR GALLERY
+===================================================== */
+
+.gallery-page *,
+.gallery-page *::before,
+.gallery-page *::after {
+  box-sizing: border-box;
+}
+
+.gallery-page button {
+  font: inherit;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.gallery-hero {
+  width: 100%;
+  padding: 68px 20px 56px;
+  text-align: center;
+  border-bottom: 1px solid rgba(168, 128, 64, 0.25);
+}
+
+.gallery-hero-content {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.gallery-kicker {
+  margin: 0 0 18px;
+  color: #8c6b32;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+
+.gallery-hero h1 {
+  margin: 0;
+  color: #2f4654;
+  font-size: clamp(38px, 5vw, 68px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.5px;
+}
+
+.gallery-divider {
+  width: 72px;
+  height: 3px;
+  margin: 22px auto 20px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #a07b3e,
+    transparent
+  );
+}
+
+.gallery-english-title {
+  margin: 0;
+  color: #52616b;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.gallery-credit {
+  margin: 16px 0 0;
+  color: #7a7d7c;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.gallery-instruction {
+  margin: 30px 0 0;
+  color: #52616b;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.gallery-instruction span {
+  margin-left: 7px;
+  color: #68737a;
+}
+
+
+/* =====================================================
+   MAIN CONTENT
+===================================================== */
+
+.gallery-content {
+  width: 100%;
+  max-width: 1460px;
+  margin: 0 auto;
+  padding: 58px 36px 100px;
+}
+
+
+/* =====================================================
+   CATEGORY
+===================================================== */
+
+.gallery-category {
+  width: 100%;
+  margin-bottom: 72px;
+}
+
+.gallery-category:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =====================================================
+   CATEGORY HEADER
+===================================================== */
+
+.gallery-category-header {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(166, 128, 68, 0.32);
+}
+
+.gallery-category-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 95px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    #9b3729,
+    #c39a4b
+  );
+}
+
+.gallery-category-header h2 {
+  margin: 0;
+  color: #53636d;
+  font-size: clamp(25px, 2.4vw, 34px);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.gallery-category-header p {
+  margin: 0 0 3px;
+  color: #68747b;
+  font-size: 16px;
+  letter-spacing: 0.3px;
+}
+
+
+/* =====================================================
+   IMAGE GRID
+===================================================== */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  width: 100%;
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.gallery-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow:
+    0 10px 26px rgba(35, 47, 56, 0.10);
+  text-align: left;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.gallery-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 20px 42px rgba(35, 47, 56, 0.18);
+}
+
+.gallery-card:focus-visible {
+  outline: 3px solid #b88c40;
+  outline-offset: 4px;
+}
+
+
+/* =====================================================
+   IMAGE WRAPPER
+===================================================== */
+
+.gallery-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      135deg,
+      #e7e0d4,
+      #d8d0c1
+    );
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+.gallery-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition:
+    transform 0.55s ease,
+    filter 0.45s ease;
+}
+
+.gallery-card:hover .gallery-image {
+  transform: scale(1.06);
+  filter: brightness(0.78);
+}
+
+
+/* =====================================================
+   CAPTION OVERLAY
+
+   Only exists when caption is present in TSX
+===================================================== */
+
+.gallery-image-caption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  padding: 22px 20px 18px;
+  background:
+    linear-gradient(
+      to top,
+      rgba(14, 23, 28, 0.92),
+      rgba(14, 23, 28, 0.58),
+      transparent
+    );
+  transform: translateY(100%);
+  opacity: 0;
+  transition:
+    transform 0.35s ease,
+    opacity 0.35s ease;
+}
+
+.gallery-card:hover .gallery-image-caption {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.gallery-image-caption span {
+  display: block;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+
+/* =====================================================
+   ENLARGE HOVER INDICATOR
+===================================================== */
+
+.gallery-image-hover {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 94px;
+  padding: 8px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  background: rgba(18, 30, 37, 0.72);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.gallery-card:hover .gallery-image-hover {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* =====================================================
+   MODAL BACKGROUND
+===================================================== */
+
+.gallery-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  padding:
+    90px
+    150px
+    70px;
+  background: rgba(7, 13, 17, 0.94);
+  backdrop-filter: blur(10px);
+}
+
+
+/* =====================================================
+   MODAL CONTENT
+===================================================== */
+
+.gallery-modal-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, 1250px);
+  max-height: 100%;
+}
+
+
+/* =====================================================
+   MODAL IMAGE WRAPPER
+
+   IMPORTANT:
+   This is what makes portrait and landscape images large.
+===================================================== */
+
+.gallery-modal-image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 250px);
+  min-height: 300px;
+  max-height: 78vh;
+}
+
+
+/* =====================================================
+   MODAL IMAGE
+===================================================== */
+
+.gallery-modal-image {
+  display: block;
+
+  /*
+     Use maximum available viewport size.
+     No fixed width or height.
+  */
+
+  width: auto;
+  height: auto;
+
+  max-width: min(100%, 1180px);
+  max-height: 100%;
+
+  object-fit: contain;
+
+  border-radius: 4px;
+
+  background: #111;
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.55);
+}
+
+
+/* =====================================================
+   MODAL CAPTION
+===================================================== */
+
+.gallery-modal-caption {
+  width: 100%;
+  max-width: 950px;
+  margin-top: 22px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.gallery-modal-number {
+  margin: 0 0 9px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.gallery-modal-category {
+  margin: 0 0 8px;
+  color: #d5ad5d;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.gallery-modal-caption h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(18px, 2vw, 27px);
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+
+/* =====================================================
+   CLOSE BUTTON
+===================================================== */
+
+.gallery-modal-close {
+  position: fixed;
+  top: 24px;
+  right: 30px;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 58px;
+  height: 58px;
+
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+
+  background: rgba(20, 30, 36, 0.8);
+
+  color: #ffffff;
+
+  font-size: 38px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.gallery-modal-close:hover {
+  background: #9b3729;
+  transform: rotate(90deg);
+}
+
+
+/* =====================================================
+   MODAL NAVIGATION
+===================================================== */
+
+.gallery-modal-nav {
+  position: fixed;
+  top: 50%;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 70px;
+  height: 70px;
+
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+
+  background: rgba(18, 28, 34, 0.72);
+
+  color: #ffffff;
+
+  font-size: 38px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transform: translateY(-50%);
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.gallery-modal-nav:hover {
+  background: #9b3729;
+}
+
+.gallery-modal-prev {
+  left: 32px;
+}
+
+.gallery-modal-next {
+  right: 32px;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1100px) {
+  .gallery-content {
+    padding:
+      50px
+      26px
+      80px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery-modal {
+    padding:
+      85px
+      100px
+      65px;
+  }
+
+  .gallery-modal-image-wrapper {
+    height: calc(100vh - 235px);
+  }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+  .gallery-hero {
+    padding:
+      48px
+      18px
+      42px;
+  }
+
+  .gallery-kicker {
+    font-size: 10px;
+    letter-spacing: 3px;
+  }
+
+  .gallery-hero h1 {
+    font-size: clamp(34px, 10vw, 48px);
+  }
+
+  .gallery-english-title {
+    font-size: 17px;
+  }
+
+  .gallery-credit {
+    font-size: 14px;
+  }
+
+  .gallery-instruction {
+    font-size: 15px;
+  }
+
+  .gallery-instruction span {
+    display: block;
+    margin:
+      4px
+      0
+      0;
+  }
+
+
+  /* CONTENT */
+
+  .gallery-content {
+    padding:
+      38px
+      16px
+      70px;
+  }
+
+  .gallery-category {
+    margin-bottom: 52px;
+  }
+
+
+  /* HEADER */
+
+  .gallery-category-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    margin-bottom: 20px;
+  }
+
+  .gallery-category-header h2 {
+    font-size: 26px;
+  }
+
+  .gallery-category-header p {
+    font-size: 14px;
+  }
+
+
+  /* GRID */
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .gallery-image-wrapper {
+    aspect-ratio: 4 / 3;
+  }
+
+
+  /* HOVER INDICATOR ALWAYS VISIBLE ON TOUCH */
+
+  .gallery-image-hover {
+    top: 12px;
+    right: 12px;
+    min-width: auto;
+    padding: 7px 11px;
+    font-size: 11px;
+    opacity: 1;
+    transform: none;
+  }
+
+
+  /* CAPTION */
+
+  .gallery-image-caption {
+    padding:
+      28px
+      16px
+      16px;
+  }
+
+  .gallery-image-caption span {
+    font-size: 14px;
+  }
+
+
+  /* MODAL */
+
+  .gallery-modal {
+    padding:
+      70px
+      16px
+      28px;
+  }
+
+  .gallery-modal-content {
+    width: 100%;
+  }
+
+  /*
+     This keeps the image MUCH larger on mobile.
+  */
+
+  .gallery-modal-image-wrapper {
+    width: 100%;
+    height: calc(100vh - 185px);
+    min-height: 0;
+    max-height: none;
+  }
+
+  .gallery-modal-image {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 3px;
+  }
+
+
+  /* MODAL TEXT */
+
+  .gallery-modal-caption {
+    margin-top: 14px;
+    padding:
+      0
+      10px;
+  }
+
+  .gallery-modal-number {
+    margin-bottom: 5px;
+    font-size: 13px;
+  }
+
+  .gallery-modal-category {
+    font-size: 13px;
+  }
+
+  .gallery-modal-caption h2 {
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+
+  /* CLOSE */
+
+  .gallery-modal-close {
+    top: 12px;
+    right: 14px;
+
+    width: 48px;
+    height: 48px;
+
+    font-size: 32px;
+  }
+
+
+  /* NAVIGATION */
+
+  .gallery-modal-nav {
+    top: auto;
+    bottom: 18px;
+
+    width: 48px;
+    height: 48px;
+
+    font-size: 28px;
+
+    transform: none;
+
+    background: rgba(17, 26, 31, 0.88);
+  }
+
+  .gallery-modal-prev {
+    left: 16px;
+  }
+
+  .gallery-modal-next {
+    right: 16px;
+  }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 400px) {
+
+  .gallery-hero h1 {
+    font-size: 34px;
+  }
+
+  .gallery-category-header h2 {
+    font-size: 23px;
+  }
+
+  .gallery-content {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .gallery-modal {
+    padding:
+      62px
+      10px
+      22px;
+  }
+
+  .gallery-modal-image-wrapper {
+    height: calc(100vh - 170px);
+  }
+}
+
+
+/* =====================================================
+   REDUCE MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gallery-card,
+  .gallery-image,
+  .gallery-image-caption,
+  .gallery-image-hover,
+  .gallery-modal-close,
+  .gallery-modal-nav {
+    transition: none;
+  }
+
+  .gallery-card:hover {
+    transform: none;
+  }
+
+  .gallery-card:hover .gallery-image {
+    transform: none;
+  }
+}

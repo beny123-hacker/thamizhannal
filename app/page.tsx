@@ -6,6 +6,7 @@ export default function Home() {
       {/* =========================================================
           HOME HERO
       ========================================================== */}
+
       <section className="home-hero tamil-hero">
         {/* Paper texture */}
         <div className="hero-paper-texture" />
@@ -13,6 +14,7 @@ export default function Home() {
         {/* =========================================================
             TEMPLE BACKGROUND
         ========================================================== */}
+
         <div className="home-temple temple-background">
           <img
             src="/images/temple.png"
@@ -24,34 +26,54 @@ export default function Home() {
         <div className="home-temple-overlay temple-fade" />
 
         {/* Very subtle Tamil manuscript text */}
-        <div className="hero-manuscript hero-manuscript-one" aria-hidden="true">
+
+        <div
+          className="hero-manuscript hero-manuscript-one"
+          aria-hidden="true"
+        >
           தமிழ் · மொழி · இலக்கியம் · ஆய்வு
         </div>
 
-        <div className="hero-manuscript hero-manuscript-two" aria-hidden="true">
+        <div
+          className="hero-manuscript hero-manuscript-two"
+          aria-hidden="true"
+        >
           தமிழண்ணல் · சிந்தனை · பண்பாடு
         </div>
 
-        <div className="hero-manuscript hero-manuscript-three" aria-hidden="true">
+        <div
+          className="hero-manuscript hero-manuscript-three"
+          aria-hidden="true"
+        >
           அறிவு · ஆய்வு · தமிழ்
         </div>
 
         {/* =========================================================
             RIGHT PORTRAIT ATMOSPHERE
         ========================================================== */}
+
         <div className="home-portrait-bg" />
         <div className="home-portrait-glow" />
 
         {/* Decorative circles */}
+
         <div className="hero-circle hero-circle-one" />
         <div className="hero-circle hero-circle-two" />
         <div className="hero-circle hero-circle-three" />
 
+        {/* Veena */}
+
+        <div className="hero-instrument" aria-hidden="true">
+          <img src="/images/veena.png" alt="" />
+        </div>
+
         {/* =========================================================
             HERO CONTENT
         ========================================================== */}
+
         <div className="home-hero-container">
           {/* ================= TEXT ================= */}
+
           <div className="home-hero-content hero-content">
             <div className="home-welcome">
               <span />
@@ -93,24 +115,15 @@ export default function Home() {
           </div>
 
           {/* ================= PORTRAIT ================= */}
+
           <div className="home-portrait-area portrait-area">
-            {/* Golden atmosphere */}
             <div className="portrait-light portrait-light-one" />
             <div className="portrait-light portrait-light-two" />
 
             <div className="portrait-container">
-              {/* Gold aura */}
               <div className="portrait-aura" />
               <div className="portrait-sun" />
 
-              {/* Rings */}
-              <div className="portrait-rings" aria-hidden="true">
-                <span />
-                <span />
-                <span />
-              </div>
-
-              {/* Portrait frame */}
               <div className="portrait-frame">
                 <div className="portrait-frame-inner">
                   <img
@@ -122,7 +135,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Decorative Tamil letter */}
             <div
               className="portrait-tamil-mark portrait-writing"
               aria-hidden="true"
@@ -132,22 +144,14 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Bottom fade to audio section */}
         <div className="hero-bottom-glow" />
       </section>
 
       {/* =========================================================
           AUDIO
       ========================================================== */}
+
       <section className="tamil-section tamil-audio-section border-b border-[#d2c5ae] bg-[#ebe3d2] py-14">
-        <div className="section-side-ornament section-side-ornament-left">
-          ❖
-        </div>
-
-        <div className="section-side-ornament section-side-ornament-right">
-          ✒
-        </div>
-
         <div className="relative z-10 mx-auto max-w-4xl px-5">
           <div className="mb-7">
             <div className="flex items-center gap-3">
@@ -181,7 +185,7 @@ export default function Home() {
             </p>
 
             <div className="mt-5 border-l-4 border-[#a47b3c] bg-[#eee5d3] p-4">
-              <p className="text-xs font-extrabold text-[#8b3f3f]">
+              <p className="text-xs font-extrabold text-[#273943]">
                 எடுத்துக்காட்டு
               </p>
 
@@ -205,7 +209,7 @@ export default function Home() {
 
               <audio controls className="h-9 w-full">
                 <source
-                  src="/audio/pazhagu-thamizh-arivom.mp3"
+                  src="https://rgbwvpwbucaprqilgvdv.supabase.co/storage/v1/object/public/thamizhannal/audio/pazhagu-thamizh-arivom.mpeg"
                   type="audio/mpeg"
                 />
                 உங்கள் உலாவி audio element-ஐ ஆதரிக்கவில்லை.
@@ -218,6 +222,7 @@ export default function Home() {
       {/* =========================================================
           VIDEO
       ========================================================== */}
+
       <section className="tamil-section bg-[#f4efe3] py-14">
         <div className="relative z-10 mx-auto max-w-5xl px-5">
           <div className="mb-7 text-center">
@@ -249,9 +254,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       {/* =========================================================
           FEATURED ARTICLE
       ========================================================== */}
+
       <section className="tamil-article-section border-y border-[#cdbfa7] bg-[#e8dfcd] py-14">
         <div className="relative z-10 mx-auto max-w-4xl px-5">
           <div className="mb-10 text-center">
@@ -278,7 +285,7 @@ export default function Home() {
 
               <div className="mx-auto mt-4 h-px w-24 bg-[#b18b4d]" />
 
-              <p className="mt-5 text-sm font-bold text-[#8b3f3f]">
+              <p className="mt-5 text-sm font-bold text-[#273943]">
                 முனைவர் மு.பழனியப்பன்
               </p>
 
@@ -331,7 +338,7 @@ export default function Home() {
                 பொறுக்காது எழும் உரமும் அவரின் ஆய்வியல் நெறியாகும்.
               </p>
 
-              <div className="my-8 border-l-4 border-[#8b3f3f] bg-[#eee7d9] px-5 py-7 md:px-8">
+              <div className="my-8 border-l-4 border-[#273943] bg-[#eee7d9] px-5 py-7 md:px-8">
                 <p className="whitespace-pre-line text-center font-serif text-sm font-medium italic leading-8 text-[#514940] md:text-base">
                   {`"கொங்குதேர் வாழ்க்கை அஞ்சிறைத் தும்பியாய்
 எங்கு தேர்ந்தாயினும் அறிவினை நாடுதல்

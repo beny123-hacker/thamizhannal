@@ -11,14 +11,27 @@ import HTMLFlipBook from "react-pageflip";
 
 import "./book-reader.css";
 
-type BookReaderProps = {
-  pdfUrl: string;
-  title: string;
-};
-
 type PdfPageProps = {
   image: string;
   pageNumber: number;
+};
+
+type NavigationBook = {
+  title: string;
+};
+
+type BookReaderProps = {
+  pdfUrl: string;
+  title: string;
+  englishTitle: string;
+  author: string;
+  cover: string;
+
+  previousBook?: NavigationBook | null;
+  nextBook?: NavigationBook | null;
+
+  onPrevious?: () => void;
+  onNext?: () => void;
 };
 
 const PdfPage = forwardRef<HTMLDivElement, PdfPageProps>(
@@ -44,6 +57,13 @@ PdfPage.displayName = "PdfPage";
 export default function BookReader({
   pdfUrl,
   title,
+  englishTitle,
+  author,
+  cover,
+  previousBook,
+  nextBook,
+  onPrevious,
+  onNext,
 }: BookReaderProps) {
   const [pages, setPages] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
@@ -60,8 +80,8 @@ export default function BookReader({
         setLoading(true);
         setErrorMessage("");
         setPages([]);
+        setCurrentPage(1);
 
-        // Load PDF.js only in the browser.
         const pdfjsLib = await import(
           "pdfjs-dist/legacy/build/pdf.mjs"
         );
@@ -69,18 +89,11 @@ export default function BookReader({
         pdfjsLib.GlobalWorkerOptions.workerSrc =
           `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/legacy/build/pdf.worker.min.mjs`;
 
-        console.log("Loading PDF:", pdfUrl);
-
         const loadingTask = pdfjsLib.getDocument({
           url: pdfUrl,
         });
 
         const pdf = await loadingTask.promise;
-
-        console.log(
-          "PDF loaded successfully. Total pages:",
-          pdf.numPages
-        );
 
         const renderedPages: string[] = [];
 
@@ -159,51 +172,14 @@ export default function BookReader({
       ?.flipPrev();
   };
 
-  if (loading) {
-    return (
-      <section className="book-reader">
-        <div className="book-loading">
-          <div className="book-loading-spinner" />
-
-          <p>நூல் திறக்கப்படுகிறது...</p>
-        </div>
-      </section>
-    );
-  }
-
-  if (!pages.length) {
-    return (
-      <section className="book-reader">
-        <div className="book-error">
-          <h2>நூலை திறக்க முடியவில்லை</h2>
-
-          <p>PDF file could not be loaded.</p>
-
-          {errorMessage && (
-            <code>{errorMessage}</code>
-          )}
-
-          <p className="pdf-path">
-            PDF Path:
-            <br />
-
-            <strong>
-              {pdfUrl}
-            </strong>
-          </p>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section className="book-reader">
+
+      {/* BOOK READER HEADER */}
       <div className="book-reader-header">
         <p className="book-reader-label">
           தமிழண்ணல் நூலகம்
         </p>
-
-        <h1>{title}</h1>
 
         <p>
           பக்கத்தை இழுத்து அல்லது கீழே உள்ள
@@ -211,72 +187,190 @@ export default function BookReader({
         </p>
       </div>
 
-      <div className="flipbook-wrapper">
-        <HTMLFlipBook
-          ref={flipBookRef}
-          width={320}
-          height={460}
-          size="stretch"
-          minWidth={280}
-          maxWidth={600}
-          minHeight={400}
-          maxHeight={850}
-          showCover={true}
-          mobileScrollSupport={false}
-          useMouseEvents={true}
-          swipeDistance={30}
-          onFlip={(event) => {
-            setCurrentPage(event.data + 1);
-          }}
-          className="thamizhannal-flipbook"
-          style={{}}
-          startPage={0}
-          drawShadow={true}
-          flippingTime={900}
-          usePortrait={true}
-          startZIndex={0}
-          autoSize={true}
-          maxShadowOpacity={0.5}
-          showPageCorners={true}
-          disableFlipByClick={false}
-        >
-          {pages.map((image, index) => (
-            <PdfPage
-              key={index}
-              image={image}
-              pageNumber={index + 1}
-            />
-          ))}
-        </HTMLFlipBook>
+      {/* BOOK AREA */}
+      <div className="book-reader-content">
+
+        {loading && (
+          <div className="book-loading">
+            <div className="book-loading-spinner" />
+
+            <p>
+              நூல் திறக்கப்படுகிறது...
+            </p>
+          </div>
+        )}
+
+        {!loading && !pages.length && (
+          <div className="book-error">
+            <h2>
+              நூலை திறக்க முடியவில்லை
+            </h2>
+
+            <p>
+              PDF file could not be loaded.
+            </p>
+
+            {errorMessage && (
+              <code>
+                {errorMessage}
+              </code>
+            )}
+          </div>
+        )}
+
+        {!loading && pages.length > 0 && (
+          <>
+            {/* FLIP BOOK */}
+            <div className="flipbook-wrapper">
+              <HTMLFlipBook
+                ref={flipBookRef}
+                width={320}
+                height={460}
+                size="stretch"
+                minWidth={280}
+                maxWidth={600}
+                minHeight={400}
+                maxHeight={850}
+                showCover={true}
+                mobileScrollSupport={false}
+                useMouseEvents={true}
+                swipeDistance={30}
+                onFlip={(event) => {
+                  setCurrentPage(event.data + 1);
+                }}
+                className="thamizhannal-flipbook"
+                style={{}}
+                startPage={0}
+                drawShadow={true}
+                flippingTime={900}
+                usePortrait={true}
+                startZIndex={0}
+                autoSize={true}
+                maxShadowOpacity={0.5}
+                showPageCorners={true}
+                disableFlipByClick={false}
+              >
+                {pages.map((image, index) => (
+                  <PdfPage
+                    key={index}
+                    image={image}
+                    pageNumber={index + 1}
+                  />
+                ))}
+              </HTMLFlipBook>
+            </div>
+
+            {/* PAGE CONTROLS */}
+            <div className="book-reader-controls">
+              <button
+                type="button"
+                onClick={previousPage}
+                disabled={currentPage <= 1}
+              >
+                ← முந்தைய பக்கம்
+              </button>
+
+              <div className="book-page-counter">
+                <span>
+                  {currentPage}
+                </span>
+
+                <span className="counter-divider">
+                  /
+                </span>
+
+                <span>
+                  {pages.length}
+                </span>
+              </div>
+
+              <button
+                type="button"
+                onClick={nextPage}
+                disabled={currentPage >= pages.length}
+              >
+                அடுத்த பக்கம் →
+              </button>
+            </div>
+          </>
+        )}
       </div>
 
-      <div className="book-reader-controls">
-        <button
-          type="button"
-          onClick={previousPage}
-          disabled={currentPage <= 1}
-        >
-          ← முந்தைய பக்கம்
-        </button>
+      {/* PERMANENT PREVIOUS / NEXT BOOK NAVIGATION */}
+      <div className="mt-10 border-t border-[#c9bba3] pt-8">
+        <div className="grid gap-4 sm:grid-cols-2">
 
-        <div className="book-page-counter">
-          <span>{currentPage}</span>
+          {/* PREVIOUS BOOK */}
+          <button
+            type="button"
+            onClick={onPrevious}
+            disabled={!previousBook}
+            className={`group flex min-h-[100px] w-full items-center gap-4 border p-4 text-left transition duration-300 ${
+              previousBook
+                ? "border-[#c9bba3] bg-[#f8f3e8] hover:border-[#8b3f3f] hover:bg-[#ebe3d2]"
+                : "cursor-not-allowed border-[#d8cdb9] bg-[#eee8dc] opacity-60"
+            }`}
+          >
+            <div
+              className={`flex h-11 w-11 shrink-0 items-center justify-center border text-lg font-bold transition ${
+                previousBook
+                  ? "border-[#8b3f3f] text-[#8b3f3f] group-hover:bg-[#8b3f3f] group-hover:text-white"
+                  : "border-[#b9afa0] text-[#9c9285]"
+              }`}
+            >
+              ←
+            </div>
 
-          <span className="counter-divider">
-            /
-          </span>
+            <div className="min-w-0">
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#8a6636]">
+                முந்தைய நூல்
+              </p>
 
-          <span>{pages.length}</span>
+              <p className="mt-2 line-clamp-2 font-serif text-sm font-extrabold leading-5 text-[#273943]">
+                {previousBook
+                  ? previousBook.title
+                  : "முந்தைய நூல் இல்லை"}
+              </p>
+            </div>
+          </button>
+
+          {/* NEXT BOOK */}
+          <button
+            type="button"
+            onClick={onNext}
+            disabled={!nextBook}
+            className={`group flex min-h-[100px] w-full items-center justify-between gap-4 border p-4 text-right transition duration-300 ${
+              nextBook
+                ? "border-[#c9bba3] bg-[#f8f3e8] hover:border-[#8b3f3f] hover:bg-[#ebe3d2]"
+                : "cursor-not-allowed border-[#d8cdb9] bg-[#eee8dc] opacity-60"
+            }`}
+          >
+            <div className="min-w-0">
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#8a6636]">
+                அடுத்த நூல்
+              </p>
+
+              <p className="mt-2 line-clamp-2 font-serif text-sm font-extrabold leading-5 text-[#273943]">
+                {nextBook
+                  ? nextBook.title
+                  : "அடுத்த நூல் இல்லை"}
+              </p>
+            </div>
+
+            <div
+              className={`flex h-11 w-11 shrink-0 items-center justify-center border text-lg font-bold transition ${
+                nextBook
+                  ? "border-[#8b3f3f] text-[#8b3f3f] group-hover:bg-[#8b3f3f] group-hover:text-white"
+                  : "border-[#b9afa0] text-[#9c9285]"
+              }`}
+            >
+              →
+            </div>
+          </button>
+
         </div>
-
-        <button
-          type="button"
-          onClick={nextPage}
-          disabled={currentPage >= pages.length}
-        >
-          அடுத்த பக்கம் →
-        </button>
       </div>
+
     </section>
   );
 }

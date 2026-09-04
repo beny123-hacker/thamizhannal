@@ -17,7 +17,7 @@ export default function Navbar() {
 
           <Link href="/books">நூல்கள்</Link>
 
-          <Link href="/library">நூலகம்</Link>
+          <Link href="/gallery">ஒளிப்படங்கள்</Link>
 
           <Link href="/remembrance">நினைவகம்</Link>
 

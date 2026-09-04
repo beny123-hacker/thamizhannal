@@ -212,3 +212,118 @@
     height: 380px;
   }
 }
+/* =========================================================
+   MOBILE ONLY FIXES
+   Desktop layout remains unchanged
+========================================================= */
+
+@media (max-width: 640px) {
+
+  /* =======================================================
+     BOOK LIST - 2 BOOKS PER ROW ON MOBILE
+  ======================================================= */
+
+  .books-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  /* Smaller padding for mobile cards */
+  .book-card {
+    min-width: 0;
+  }
+
+  .book-card-content {
+    padding: 12px;
+  }
+
+  /* Book title */
+  .book-card-title {
+    font-size: 1.05rem;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* English title */
+  .book-card-english-title {
+    font-size: 0.65rem;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+
+  /* Author */
+  .book-card-author {
+    font-size: 0.7rem;
+    line-height: 1.4;
+  }
+
+  /* Hide long description on small screens if needed */
+  .book-card-description {
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+
+
+  /* =======================================================
+     READING PAGE
+     Make book cover smaller ONLY on mobile
+  ======================================================= */
+
+  .selected-book-cover,
+  .reading-book-cover,
+  .book-reader-cover {
+    width: 120px;
+    max-width: 38vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+  /* =======================================================
+     LONG BOOK TITLE FIX
+  ======================================================= */
+
+  .reading-book-title,
+  .selected-book-title {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .reading-book-english-title {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+
+
+  /* =======================================================
+     READING PAGE HEADER
+  ======================================================= */
+
+  .book-reader-header {
+    padding: 16px 14px;
+  }
+
+  .book-reader-info {
+    min-width: 0;
+  }
+
+
+  /* =======================================================
+     MOBILE ACTION BUTTONS
+  ======================================================= */
+
+  .book-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .book-actions a,
+  .book-actions button {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+}

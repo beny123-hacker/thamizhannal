@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 
 const navItems = [
@@ -14,11 +15,23 @@ const navItems = [
 
 export default function Header() {
   const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const isActiveLink = (href: string) => {
+    return href === "/"
+      ? pathname === "/"
+      : pathname.startsWith(href);
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#c8b79c] bg-[#182b35]/95 shadow-md backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Link href="/" className="flex items-center gap-3">
+      <div className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+        {/* LOGO */}
+        <Link
+          href="/"
+          onClick={() => setMenuOpen(false)}
+          className="flex items-center gap-3"
+        >
           <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#c8a96b] bg-[#233b47] text-lg font-bold text-[#e6d4ad]">
             த
           </div>
@@ -34,12 +47,10 @@ export default function Header() {
           </div>
         </Link>
 
+        {/* DESKTOP NAVIGATION */}
         <nav className="hidden items-center gap-5 lg:flex">
           {navItems.map((item) => {
-            const isActive =
-              item.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(item.href);
+            const isActive = isActiveLink(item.href);
 
             return (
               <Link
@@ -58,7 +69,7 @@ export default function Header() {
                 </span>
 
                 <span
-                  className={`mt-0.5 block text-[8px] font-semibold uppercase tracking-wider transition-colors duration-200 ${
+                  className={`mt-0.5 block text-[8px] font-semibold uppercase tracking-wider ${
                     isActive
                       ? "text-[#d8b36a]"
                       : "text-[#9eaaad]"
@@ -79,12 +90,80 @@ export default function Header() {
           })}
         </nav>
 
-        <button
-          aria-label="Open menu"
-          className="rounded border border-[#9d8763] px-2 py-1 text-base font-bold text-[#f2e7cf] lg:hidden"
-        >
-          ☰
-        </button>
+        {/* MOBILE MENU */}
+        <div className="relative lg:hidden">
+          <button
+            type="button"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            className="flex h-9 w-9 items-center justify-center rounded border border-[#9d8763] text-lg font-bold text-[#f2e7cf] transition hover:bg-[#233b47]"
+          >
+            {menuOpen ? "✕" : "☰"}
+          </button>
+
+          {/* RIGHT SIDE MOBILE DROPDOWN */}
+          {menuOpen && (
+            <div
+              className="
+                absolute right-0 top-[calc(100%+0.75rem)]
+                z-[60]
+                w-52
+                overflow-hidden
+                rounded-lg
+                border border-[#b99b61]/40
+                bg-[#182b35]/85
+                shadow-2xl
+                backdrop-blur-xl
+              "
+            >
+              <nav className="py-1.5">
+                {navItems.map((item) => {
+                  const isActive = isActiveLink(item.href);
+
+                  return (
+                    <Link
+                      key={item.tamil}
+                      href={item.href}
+                      onClick={() => setMenuOpen(false)}
+                      className={`
+                        block px-4 py-3
+                        transition-all duration-200
+                        ${
+                          isActive
+                            ? "bg-[#233b47]/90"
+                            : "hover:bg-[#ffffff]/5"
+                        }
+                      `}
+                    >
+                      {/* Tamil Navigation */}
+                      <span
+                        className={`block text-sm font-extrabold ${
+                          isActive
+                            ? "text-[#d8b36a]"
+                            : "text-[#f2e7cf]"
+                        }`}
+                      >
+                        {item.tamil}
+                      </span>
+
+                      {/* English Translation */}
+                      <span
+                        className={`mt-0.5 block text-[8px] font-semibold uppercase tracking-[0.18em] ${
+                          isActive
+                            ? "text-[#e0c88e]"
+                            : "text-[#aeb6b5]"
+                        }`}
+                      >
+                        {item.english}
+                      </span>
+                    </Link>
+                  );
+                })}
+              </nav>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );

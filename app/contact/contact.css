@@ -1,0 +1,263 @@
+.contact-page {
+  min-height: 100vh;
+  background: #f5efe3;
+  color: #273943;
+}
+
+.contact-section {
+  width: 100%;
+  padding: 64px 20px 80px;
+}
+
+.contact-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* --------------------------------
+   HEADER
+-------------------------------- */
+
+.contact-header {
+  margin-bottom: 24px;
+}
+
+.contact-eyebrow {
+  margin: 0 0 10px;
+  color: #8a6636;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.contact-title {
+  margin: 0;
+  color: #273943;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.contact-subtitle {
+  margin: 12px 0 0;
+  color: #8b3f3f;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* --------------------------------
+   DESCRIPTION
+-------------------------------- */
+
+.contact-description {
+  max-width: 760px;
+  margin: 0 0 28px;
+  color: #5f625f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.9;
+}
+
+/* --------------------------------
+   FACEBOOK
+-------------------------------- */
+
+.contact-facebook {
+  margin-bottom: 32px;
+  padding: 24px 0;
+  border-top: 1px solid #c9bba3;
+  border-bottom: 1px solid #c9bba3;
+}
+
+.contact-facebook-label {
+  margin: 0 0 12px;
+  color: #5f625f;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.contact-facebook-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: 1px solid #273943;
+  background: #273943;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.contact-facebook-button:hover {
+  border-color: #8b3f3f;
+  background: #8b3f3f;
+  transform: translateY(-1px);
+}
+
+/* --------------------------------
+   FORM WRAPPER
+-------------------------------- */
+
+.contact-form-wrapper {
+  width: 100%;
+  padding: 32px;
+  border: 1px solid #c9bba3;
+  background: #f8f3e8;
+}
+
+/* --------------------------------
+   FORM
+-------------------------------- */
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.contact-field {
+  width: 100%;
+}
+
+.contact-field label {
+  display: block;
+  margin-bottom: 9px;
+  color: #273943;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.contact-field label > span:first-of-type {
+  color: #8b3f3f;
+}
+
+.contact-english {
+  margin-left: 6px;
+  color: #6d706d !important;
+  font-weight: 400 !important;
+}
+
+/* --------------------------------
+   INPUTS
+-------------------------------- */
+
+.contact-field input,
+.contact-field textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #c9bba3;
+  border-radius: 0;
+  background: #fffdf8;
+  color: #273943;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.5;
+  outline: none;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.contact-field input {
+  min-height: 48px;
+  padding: 12px 14px;
+}
+
+.contact-field textarea {
+  min-height: 170px;
+  padding: 12px 14px;
+  resize: vertical;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  border-color: #8b3f3f;
+  box-shadow: 0 0 0 2px rgba(139, 63, 63, 0.08);
+}
+
+/* --------------------------------
+   SUBMIT BUTTON
+-------------------------------- */
+
+.contact-submit {
+  align-self: flex-start;
+  padding: 13px 26px;
+  border: 1px solid #8b3f3f;
+  border-radius: 0;
+  background: #8b3f3f;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.contact-submit:hover {
+  border-color: #273943;
+  background: #273943;
+  transform: translateY(-1px);
+}
+
+/* --------------------------------
+   MOBILE
+-------------------------------- */
+
+@media (max-width: 640px) {
+  .contact-section {
+    padding: 48px 16px 64px;
+  }
+
+  .contact-title {
+    font-size: 34px;
+  }
+
+  .contact-eyebrow {
+    font-size: 12px;
+  }
+
+  .contact-subtitle {
+    font-size: 16px;
+  }
+
+  .contact-description {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .contact-facebook {
+    padding: 20px 0;
+  }
+
+  .contact-form-wrapper {
+    padding: 20px;
+  }
+
+  .contact-form {
+    gap: 20px;
+  }
+
+  .contact-field input {
+    min-height: 46px;
+  }
+
+  .contact-field textarea {
+    min-height: 150px;
+  }
+
+  .contact-submit {
+    width: 100%;
+    justify-content: center;
+  }
+}
