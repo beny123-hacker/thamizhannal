@@ -1,25 +1,69 @@
 /* =========================================================
-   HERO BASE
+   THAMIZHANNAL RETRO TAMIL LITERARY ARCHIVE
+   HOME PAGE STYLESHEET
+   A calm, timeless, historical manuscript editorial design
+========================================================= */
+
+/* =========================================================
+   1. BASE PAGE
+========================================================= */
+
+.home-page {
+  position: relative;
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      ellipse at 78% 18%,
+      rgba(215, 168, 80, 0.1) 0%,
+      rgba(200, 150, 60, 0.02) 45%,
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      #f7f3e9 0%,
+      #f5eee1 30%,
+      #f4efe3 60%,
+      #f5eee1 85%,
+      #f4efe3 100%
+    );
+  color: #273943;
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   2. HERO BASE & LAYERED BACKGROUND
 ========================================================= */
 
 .home-hero {
   position: relative;
-  min-height: 760px;
+  min-height: 800px;
   overflow: hidden;
   isolation: isolate;
-  background:
+  background-color: #f4efe3;
+  background-image:
+    /* Faint uneven aging & soft warm parchment tone — ZERO pale or white hotspots */
     radial-gradient(
-      circle at 82% 45%,
-      rgba(230, 184, 100, 0.4) 0%,
-      rgba(221, 174, 86, 0.18) 26%,
-      transparent 52%
+      ellipse 65% 55% at 50% 46%,
+      rgba(245, 238, 224, 0.35) 0%,
+      transparent 80%
     ),
+    radial-gradient(
+      ellipse 55% 45% at 18% 30%,
+      rgba(202, 162, 98, 0.07) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 86% 65%,
+      rgba(190, 150, 85, 0.06) 0%,
+      transparent 75%
+    ),
+    /* Continuous parchment sheet tone */
     linear-gradient(
-      90deg,
-      #e6dcc7 0%,
-      #f2ead9 34%,
-      #f7f0e1 62%,
-      #ecd9ae 100%
+      180deg,
+      #eee6d6 0%,
+      #f2ebdc 25%,
+      #f4efe3 60%,
+      #ede4d1 100%
     );
 }
 
@@ -29,16 +73,16 @@
   inset: 0;
   z-index: 4;
   pointer-events: none;
-  background:
-    radial-gradient(
-      ellipse at center,
-      transparent 55%,
-      rgba(92, 66, 33, 0.1) 100%
-    );
+  background: radial-gradient(
+    ellipse 85% 75% at 50% 50%,
+    transparent 60%,
+    rgba(100, 72, 34, 0.05) 84%,
+    rgba(80, 52, 20, 0.12) 100%
+  );
 }
 
 /* =========================================================
-   PAPER TEXTURE
+   3. PARCHMENT TEXTURE
 ========================================================= */
 
 .hero-paper-texture {
@@ -46,1342 +90,961 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.4;
-
-  background-image:
-    radial-gradient(
-      rgba(102, 79, 47, 0.14) 0.6px,
-      transparent 0.8px
-    );
-  background-size: 5px 5px;
-
+  background-image: url("https://rgbwvpwbucaprqilgvdv.supabase.co/storage/v1/object/public/thamizhannal/images/parchment-texture.jpg");
+  background-size: 736px auto;
+  background-repeat: repeat;
+  opacity: 0.17;
   mix-blend-mode: multiply;
+  filter: contrast(1.04) brightness(1.01);
 }
 
 /* =========================================================
-   TEMPLE — anchored far left, thicker
+   4. TEMPLE ATMOSPHERE — Architectural Engraving Printed on Parchment
+   - Substantially enlarged vertical presence balanced with portrait frame
+   - Pinnacle (kalasam) 100% complete and uncropped at top
+   - Complete architectural vimanam / lower base visible
+   - ZERO white/cream rectangular shade, backdrop, or overlay
+   - Organic multi-directional fade on bottom, right, and left directly into parchment
+   - Muted sepia/charcoal architectural print ink: mix-blend-mode multiply
 ========================================================= */
 
 .home-temple {
   position: absolute;
-  left: 0;
-  top: 0;
+  left: clamp(0px, 1.2vw, 24px);
+  top: clamp(8px, 1.2vh, 22px);
   bottom: 0;
-  width: 50%;
+  width: clamp(380px, 32vw, 540px);
+  height: clamp(750px, 92vh, 960px);
   z-index: 1;
-  overflow: hidden;
+  overflow: visible;
   pointer-events: none;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-.home-temple img {
+.home-temple::after {
+  display: none !important;
+}
+
+.home-temple img,
+.home-temple-image,
+.temple-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: left center;
-
-  opacity: 0.42;
-  filter:
-    sepia(0.75)
-    saturate(0.6)
-    contrast(0.9)
-    brightness(1.06);
-
-  mask-image: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.85) 0%,
-    rgba(0, 0, 0, 0.6) 50%,
-    transparent 100%
-  );
-
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.85) 0%,
-    rgba(0, 0, 0, 0.6) 50%,
-    transparent 100%
-  );
-}
-
-.home-temple-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-
-  background:
+  object-fit: contain;
+  object-position: left top;
+  opacity: 0.58;
+  /* Muted sepia/charcoal architectural print ink — legible yet archival */
+  filter: grayscale(0.58) sepia(0.50) contrast(1.30) brightness(0.74);
+  mix-blend-mode: multiply;
+  /*
+    Multi-directional organic dissolve directly into parchment:
+    - Top: 100% visible at y=0 (kalasam / pinnacle completely preserved, no clipping)
+    - Bottom: smooth continuous fade starting at 36%, down to 0% at 76% (ZERO straight cut at bottom, dissolves gently into parchment)
+    - Right: smooth continuous fade starting at 44%, down to 0% at 86% (ZERO straight wall cut)
+    - Left: soft 5% entrance fade so no abrupt border
+    - Radial ellipse: gently softens all 4 corners into natural ink wash
+  */
+  -webkit-mask-image:
     linear-gradient(
-      90deg,
-      rgba(239, 231, 216, 0.02),
-      rgba(244, 238, 227, 0.28) 50%,
-      rgba(244, 238, 227, 0.88) 100%
+      to bottom,
+      black 0%,
+      black 36%,
+      rgba(0, 0, 0, 0.85) 48%,
+      rgba(0, 0, 0, 0.5) 60%,
+      rgba(0, 0, 0, 0.15) 70%,
+      transparent 78%
     ),
     linear-gradient(
-      180deg,
-      rgba(244, 238, 227, 0.08),
-      rgba(244, 238, 227, 0.35)
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.5) 2%,
+      black 6%,
+      black 44%,
+      rgba(0, 0, 0, 0.65) 62%,
+      rgba(0, 0, 0, 0.22) 76%,
+      transparent 88%
+    ),
+    radial-gradient(
+      ellipse 88% 70% at 40% 36%,
+      black 45%,
+      rgba(0, 0, 0, 0.7) 70%,
+      transparent 95%
     );
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black 0%,
+      black 36%,
+      rgba(0, 0, 0, 0.85) 48%,
+      rgba(0, 0, 0, 0.5) 60%,
+      rgba(0, 0, 0, 0.15) 70%,
+      transparent 78%
+    ),
+    linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.5) 2%,
+      black 6%,
+      black 44%,
+      rgba(0, 0, 0, 0.65) 62%,
+      rgba(0, 0, 0, 0.22) 76%,
+      transparent 88%
+    ),
+    radial-gradient(
+      ellipse 88% 70% at 40% 36%,
+      black 45%,
+      rgba(0, 0, 0, 0.7) 70%,
+      transparent 95%
+    );
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
 }
 
-/* =========================================================
-   SUBTLE TAMIL TEXT
-========================================================= */
-
-.hero-manuscript {
+/* Sky Birds above Temple */
+.hero-sky-birds {
   position: absolute;
-  z-index: 3;
+  left: clamp(220px, 24vw, 380px);
+  top: clamp(90px, 13vh, 140px);
+  width: 140px;
+  height: 70px;
   pointer-events: none;
+  z-index: 3;
+}
 
-  color: #8a6739;
-  font-size: clamp(1rem, 1.8vw, 2rem);
+/* Top-Right Calligraphy Watermark */
+.hero-manuscript-calligraphy {
+  position: absolute;
+  right: clamp(25px, 5vw, 90px);
+  top: clamp(55px, 9vh, 90px);
+  font-family: serif;
+  font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+  font-weight: 700;
+  color: #7b582b;
+  opacity: 0.085;
   letter-spacing: 0.08em;
-  white-space: nowrap;
-
-  opacity: 0.07;
-
-  filter: blur(0.25px);
+  pointer-events: none;
   user-select: none;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+/* Bottom-Right Large Tamil Letter 'அ' Watermark */
+.hero-tamil-letter-watermark {
+  position: absolute;
+  right: clamp(15px, 3.5vw, 50px);
+  bottom: clamp(10px, 2vh, 35px);
+  font-family: serif;
+  font-size: clamp(8rem, 13vw, 15rem);
+  font-weight: 900;
+  color: #7b582b;
+  opacity: 0.085;
+  line-height: 0.85;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
 }
 
 .hero-manuscript-one {
-  top: 14%;
-  left: 48%;
-  transform: rotate(-8deg);
+  top: 12%;
+  left: 46%;
+  transform: rotate(-6deg);
 }
 
 .hero-manuscript-two {
   right: 2%;
-  bottom: 10%;
+  bottom: 12%;
   transform: rotate(-90deg);
   transform-origin: right bottom;
-  font-size: clamp(2.5rem, 6vw, 6rem);
+  font-size: clamp(2.5rem, 5.5vw, 5.5rem);
   font-weight: 900;
-  opacity: 0.05;
-  color: #7a5a2e;
+  opacity: 0.035;
 }
 
 .hero-manuscript-three {
-  top: 44%;
-  right: 3%;
+  top: 42%;
+  right: 4%;
   transform: rotate(-4deg);
-  opacity: 0.045;
+  opacity: 0.035;
 }
 
 /* =========================================================
-   HERO LAYOUT — single column, text centered on full width
+   6. HERO LAYOUT & CONTAINER
 ========================================================= */
 
 .home-hero-container {
   position: relative;
   z-index: 10;
-
-  width: min(1320px, calc(100% - 48px));
-  min-height: 760px;
-
+  width: min(1420px, calc(100% - 40px));
+  min-height: 750px;
   margin: 0 auto;
-
-  display: flex;
+  padding: 45px 0 35px;
+  display: grid;
+  grid-template-columns: minmax(220px, 0.95fr) minmax(440px, 1.6fr) minmax(360px, 1.45fr);
   align-items: center;
-  justify-content: center;
+  gap: clamp(16px, 2.5vw, 36px);
+}
+
+.hero-temple-zone {
+  width: 100%;
+  min-height: 200px;
+  pointer-events: none;
 }
 
 /* =========================================================
-   TEXT — centered across whole hero
+   7. HERO CONTENT COLUMN & TYPOGRAPHY
 ========================================================= */
 
 .home-hero-content {
   position: relative;
   z-index: 20;
-
   width: 100%;
-  max-width: 720px;
-
+  max-width: 620px;
   margin: 0 auto;
-
-  padding-top: 20px;
-
+  transform: none;
   display: flex;
   flex-direction: column;
   align-items: center;
-
   text-align: center;
 }
 
 .home-welcome {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
 }
 
-.home-welcome span {
-  width: 42px;
+.welcome-line {
+  position: relative;
+  width: 44px;
   height: 1px;
-  background: #9b7844;
+  background: #a47b3c;
+  opacity: 0.75;
+}
+
+.welcome-line::after {
+  content: "";
+  position: absolute;
+  top: -2.5px;
+  width: 6px;
+  height: 6px;
+  background: #a47b3c;
+  transform: rotate(45deg);
+}
+
+.home-welcome .welcome-line:first-child::after {
+  right: -3px;
+}
+
+.home-welcome .welcome-line:last-child::after {
+  left: -3px;
 }
 
 .home-welcome p {
   margin: 0;
-  color: #7b5e35;
-
-  font-size: 10px;
+  color: #6a4f27;
+  font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
 }
 
 .hero-title {
   position: relative;
   z-index: 30;
-
-  margin: 18px 0 0;
-
-  color: #22323d;
-
-  font-size: clamp(2.5rem, 6vw, 5.5rem);
-  line-height: 0.9;
+  margin: 12px 0 0;
+  color: #162e3b;
+  font-size: clamp(3.2rem, 5.8vw, 5.2rem);
   font-weight: 900;
-  letter-spacing: -0.04em;
-
-  white-space: nowrap;
-
-  text-shadow:
-    0 2px 0 rgba(255, 255, 255, 0.3),
-    0 12px 30px rgba(63, 47, 29, 0.08);
+  letter-spacing: -0.015em;
+  line-height: 1.12;
+  text-shadow: 0 1px 2px rgba(22, 46, 59, 0.08);
 }
 
-.hero-subtitle {
-  margin-top: 22px;
-
-  color: #7d3230;
-
-  font-size: clamp(1.3rem, 2vw, 2rem);
-  font-weight: 700;
+.home-hero-subtitle {
+  margin: 10px 0 0;
+  color: #7a2922;
+  font-size: clamp(1.25rem, 2.1vw, 1.65rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
 }
 
 .home-year {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 13px;
-
-  margin-top: 20px;
+  gap: 12px;
+  margin-top: 14px;
 }
 
-.home-year span {
-  width: 58px;
+.year-line {
+  width: 32px;
   height: 1px;
-  background: #aa8a57;
+  background: #b08a3e;
+  opacity: 0.65;
 }
 
 .home-year p {
   margin: 0;
-
-  color: #625d54;
-
-  font-size: 11px;
+  color: #8e6c38;
+  font-size: 0.8125rem;
   font-weight: 800;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.22em;
 }
 
 .home-description {
-  max-width: 560px;
-
-  margin-top: 28px;
-  margin-left: auto;
-  margin-right: auto;
-
-  color: #625d54;
-
-  font-size: 16px;
-  line-height: 1.9;
+  width: 100%;
+  max-width: 530px;
+  margin: 20px auto 0;
+  color: #453c32;
+  font-size: clamp(0.92rem, 1.15vw, 1.02rem);
   font-weight: 500;
-
+  line-height: 1.85;
+  letter-spacing: 0.01em;
   text-align: center;
 }
 
+/* =========================================================
+   8. EDITORIAL LITERARY BUTTONS
+========================================================= */
+
 .home-buttons {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
-  gap: 14px;
-
-  margin-top: 30px;
+  gap: 16px;
+  margin-top: 26px;
 }
 
 .home-primary-button {
-  background: #22323d;
-  color: #f3e8d0;
-  padding: 14px 26px;
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  border: 1px solid #22323d;
-  transition: background 0.2s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 13px 26px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  background-color: #18303d;
+  border: 1px solid #b8934d;
+  border-radius: 2px;
+  box-shadow: 0 3px 10px rgba(24, 48, 61, 0.22);
+  transition: all 0.25s ease;
+  text-decoration: none;
 }
 
 .home-primary-button:hover {
-  background: #2f4552;
+  background-color: #223f50;
+  border-color: #d4ae60;
+  color: #ffffff;
   transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(24, 48, 61, 0.3);
 }
 
 .home-secondary-button {
-  background: transparent;
-  color: #7d3230;
-  padding: 14px 26px;
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  border: 1.5px solid #8b3f3f;
-  transition: background 0.2s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 13px 26px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #27353f;
+  background-color: #ece1ce;
+  border: 1px solid #9c7b46;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+  text-decoration: none;
 }
 
 .home-secondary-button:hover {
-  background: rgba(139, 63, 63, 0.08);
+  background-color: #f3ebd9;
+  border-color: #7b5f30;
+  color: #16242c;
   transform: translateY(-1px);
 }
 
+.hero-bottom-rosette {
+  margin-top: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-bottom-left-badge {
+  position: absolute;
+  left: clamp(16px, 2.5vw, 36px);
+  bottom: clamp(16px, 2.5vw, 36px);
+  width: 26px;
+  height: 26px;
+  border-radius: 9999px;
+  background-color: #1e2830;
+  color: #e5d7ba;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  opacity: 0.75;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
 /* =========================================================
-   PORTRAIT AREA — absolutely positioned right-side overlay
-   (removed from grid flow so text block can center on the
-   full hero width)
+   9. VINTAGE TAMIL COMMEMORATIVE PRINT COMPOSITION
+   Unified Archival Artwork:
+   - Authentic Tamil wedding-card / invitation frame artwork
+   - Feathered on all 4 outer edges — zero rectangular boundaries
+   - mix-blend-mode: multiply so frame paper melts into hero parchment
+   - Thamizhannal portrait perfectly positioned inside upper-center opening
+   - Flanked naturally by carved stone pillars and hanging bells/garlands
+   - Above the bottom architectural gopuram/balustrade
+   - Soft watercolor vignette on portrait edges; face 100% crisp and readable
+   - NO rectangular boxes, NO modern cards, NO shadows, NO borders
 ========================================================= */
 
 .home-portrait-area {
-  position: absolute;
-  z-index: 5;
-
-  top: 0;
-  right: -2%;
-  bottom: 0;
-
-  width: min(46vw, 640px);
-
+  position: relative;
+  z-index: 15;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-
-  overflow: visible;
-  pointer-events: none;
-}
-
-.home-portrait-bg {
-  position: absolute;
-  z-index: 1;
-
-  top: 4%;
-  right: -8%;
-
-  width: min(58vw, 800px);
-  height: min(58vw, 800px);
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(255, 224, 150, 0.85) 0%,
-      rgba(230, 181, 90, 0.4) 32%,
-      rgba(223, 174, 83, 0.14) 55%,
-      transparent 74%
-    );
-
-  filter: blur(14px);
-}
-
-.home-portrait-glow {
-  position: absolute;
-  z-index: 2;
-
-  top: 16%;
-  right: -2%;
-
-  width: 520px;
-  height: 460px;
-
-  border-radius: 50%;
-
-  background: rgba(226, 177, 79, 0.22);
-
-  filter: blur(80px);
-}
-
-/* =========================================================
-   PORTRAIT CONTAINER
-========================================================= */
-
-.portrait-container {
-  position: relative;
-  z-index: 10;
-
-  width: min(620px, 100%);
-  height: 660px;
-
-  margin-right: -60px;
-
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-}
-
-.portrait-aura {
-  position: absolute;
-
-  top: 6%;
-  right: -2%;
-
-  width: 540px;
-  height: 540px;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(255, 232, 172, 0.85) 0%,
-      rgba(233, 187, 94, 0.42) 34%,
-      rgba(212, 158, 59, 0.14) 58%,
-      transparent 76%
-    );
-
-  filter: blur(6px);
-}
-
-.portrait-sun {
-  position: absolute;
-
-  top: 11%;
-  right: 2%;
-
-  width: 450px;
-  height: 450px;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(255, 248, 223, 0.55),
-      rgba(230, 183, 92, 0.18) 50%,
-      transparent 70%
-    );
-}
-
-/* =========================================================
-   PORTRAIT — feathered vignette
-========================================================= */
-
-.portrait-frame {
-  position: relative;
-  z-index: 20;
-
-  width: 520px;
-  height: 620px;
-
-  margin-right: -30px;
-
-  display: flex;
-  align-items: flex-end;
   justify-content: center;
-
-  overflow: hidden;
+  pointer-events: auto;
 }
 
-.portrait-frame-inner {
-  position: absolute;
-  inset: 0;
-
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-
-  overflow: hidden;
-
-  background:
-    radial-gradient(
-      circle at 50% 30%,
-      rgba(255, 226, 157, 0.28),
-      rgba(244, 235, 215, 0.03) 55%,
-      transparent 78%
-    );
-}
-
-.hero-portrait {
+.vintage-gemini-artwork-wrapper {
   position: relative;
-  z-index: 5;
-
-  width: 118%;
-  max-width: none;
-
-  height: auto;
-
-  display: block;
-
-  transform: translateX(2%);
-
-  filter:
-    sepia(0.18)
-    saturate(0.88)
-    contrast(1.04)
-    brightness(1.03);
-
-  mask-image:
-    radial-gradient(
-      ellipse 62% 68% at 52% 42%,
-      black 42%,
-      rgba(0, 0, 0, 0.85) 62%,
-      rgba(0, 0, 0, 0.3) 80%,
-      transparent 96%
-    );
-
-  -webkit-mask-image:
-    radial-gradient(
-      ellipse 62% 68% at 52% 42%,
-      black 42%,
-      rgba(0, 0, 0, 0.85) 62%,
-      rgba(0, 0, 0, 0.3) 80%,
-      transparent 96%
-    );
-}
-
-/* =========================================================
-   GOLDEN LIGHTS
-========================================================= */
-
-.portrait-light {
-  position: absolute;
-
-  z-index: 4;
-
-  border-radius: 50%;
-
-  pointer-events: none;
-}
-
-.portrait-light-one {
-  top: 16%;
-  right: 8%;
-
-  width: 320px;
-  height: 320px;
-
-  background: rgba(255, 210, 113, 0.28);
-
-  filter: blur(80px);
-}
-
-.portrait-light-two {
-  bottom: 3%;
-  right: 2%;
-
-  width: 280px;
-  height: 180px;
-
-  background: rgba(215, 159, 65, 0.24);
-
-  filter: blur(75px);
-}
-
-/* =========================================================
-   DECORATIVE TAMIL LETTER
-========================================================= */
-
-.portrait-tamil-mark {
-  position: absolute;
-
-  z-index: 3;
-
-  right: -20px;
-  bottom: 14%;
-
-  color: #9f7c43;
-
-  font-size: clamp(5rem, 10vw, 10rem);
-  font-weight: 900;
-
-  opacity: 0.08;
-
-  transform: rotate(-10deg);
-
-  pointer-events: none;
-}
-
-/* =========================================================
-   VEENA / INSTRUMENT DECORATION
-========================================================= */
-
-.hero-instrument {
-  position: absolute;
-  z-index: 6;
-  pointer-events: none;
-
-  left: 2%;
-  bottom: -3%;
-
-  width: clamp(160px, 15vw, 240px);
-  height: auto;
-
-  opacity: 0.9;
-  transform: rotate(-6deg);
-
-  filter:
-    sepia(0.28)
-    saturate(1.05)
-    contrast(1.02)
-    drop-shadow(0 18px 26px rgba(63, 47, 29, 0.22));
-}
-
-.hero-instrument img {
   width: 100%;
-  height: auto;
-  display: block;
+  max-width: clamp(380px, 28vw, 440px);
+  aspect-ratio: 682 / 1024;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-/* =========================================================
-   HERO CIRCLES
-========================================================= */
-
-.hero-circle {
-  position: absolute;
-
-  border: 1px solid rgba(151, 112, 50, 0.1);
-  border-radius: 50%;
-
+.vintage-gemini-artwork-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  opacity: 0.96;
+  filter: sepia(0.08) contrast(1.08) brightness(0.99);
   pointer-events: none;
+  /*
+    Feather all 4 outside edges so the rectangular perimeter disappears completely into parchment:
+    - Left & Right: 0% transparent to 6% opaque, 94% opaque to 100% transparent
+    - Top & Bottom: 0% transparent to 5% opaque, 95% opaque to 100% transparent
+    - Corner radial fade: softens all 4 corners into smooth organic arcs
+  */
+  -webkit-mask-image:
+    linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.7) 2.5%,
+      black 6%,
+      black 94%,
+      rgba(0, 0, 0, 0.7) 97.5%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.7) 2%,
+      black 5%,
+      black 95%,
+      rgba(0, 0, 0, 0.7) 98%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 92% 93% at 50% 50%,
+      black 80%,
+      rgba(0, 0, 0, 0.85) 91%,
+      transparent 99%
+    );
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.7) 2.5%,
+      black 6%,
+      black 94%,
+      rgba(0, 0, 0, 0.7) 97.5%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.7) 2%,
+      black 5%,
+      black 95%,
+      rgba(0, 0, 0, 0.7) 98%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 92% 93% at 50% 50%,
+      black 80%,
+      rgba(0, 0, 0, 0.85) 91%,
+      transparent 99%
+    );
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  transition: transform 0.5s ease;
 }
 
-.hero-circle-one {
-  width: 650px;
-  height: 650px;
-
-  right: -2%;
-  top: 8%;
+.vintage-gemini-artwork-img:hover {
+  transform: scale(1.015);
 }
 
-.hero-circle-two {
-  width: 430px;
-  height: 430px;
-
-  right: 6%;
-  top: 22%;
-}
-
-.hero-circle-three {
-  width: 850px;
-  height: 850px;
-
-  right: -24%;
-  top: -14%;
-
-  opacity: 0.35;
+/* Localized archival tone integration for the tiny AI mark without altering surrounding artwork */
+.gemini-mark-conceal {
+  position: absolute;
+  right: 12.2%;
+  bottom: 8.5%;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgba(152, 137, 120, 0.85) 0%,
+    rgba(170, 155, 138, 0.5) 45%,
+    transparent 80%
+  );
+  mix-blend-mode: multiply;
+  filter: blur(1.5px);
 }
 
 /* =========================================================
-   BOTTOM BLEND INTO AUDIO SECTION
+   10. SEAMLESS SECTION BLENDING & DIVIDERS
 ========================================================= */
 
 .hero-bottom-glow {
   position: absolute;
-
-  z-index: 30;
-
+  z-index: 25;
   left: 0;
   right: 0;
-  bottom: -1px;
-
-  height: 130px;
-
+  bottom: 0;
+  height: 80px;
   pointer-events: none;
-
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(235, 227, 210, 0.25) 45%,
-    #ebe3d2 100%
+    rgba(244, 239, 227, 0.25) 45%,
+    rgba(244, 239, 227, 0.65) 100%
   );
 }
 
-/* =========================================================
-   MOBILE
-========================================================= */
+.section-blend-divider {
+  position: relative;
+  z-index: 10;
+  height: 1px;
+  width: min(1080px, 90%);
+  margin: 0 auto;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(176, 138, 62, 0.15) 15%,
+    rgba(176, 138, 62, 0.45) 50%,
+    rgba(176, 138, 62, 0.15) 85%,
+    transparent 100%
+  );
+}
 
-@media (max-width: 900px) {
-  .home-hero {
-    min-height: auto;
-  }
-
-  .home-hero-container {
-    width: calc(100% - 32px);
-    max-width: 680px;
-    min-height: auto;
-
-    display: block;
-
-    padding-top: 90px;
-    padding-bottom: 40px;
-
-    overflow: visible;
-  }
-
-  .home-hero-content {
-    max-width: 100%;
-    padding-top: 0;
-    overflow: visible;
-  }
-
-  .hero-title {
-    font-size: clamp(3rem, 13vw, 5.5rem);
-    white-space: normal;
-    line-height: 0.95;
-    overflow: visible;
-    word-break: keep-all;
-  }
-
-  .home-description {
-    max-width: 100%;
-    font-size: 15px;
-  }
-
-  .home-buttons {
-    width: 100%;
-  }
-
-  .home-portrait-area {
-    position: relative;
-    top: auto;
-    right: auto;
-    bottom: auto;
-
-    width: 100%;
-    min-height: 460px;
-    height: 460px;
-
-    margin-top: 24px;
-
-    justify-content: center;
-    overflow: visible;
-    pointer-events: auto;
-  }
-
-  .portrait-container {
-    width: 100%;
-    height: 460px;
-    margin-right: 0;
-    justify-content: center;
-  }
-
-  .portrait-frame {
-    width: min(80vw, 380px);
-    height: min(100vw, 460px);
-    margin-right: 0;
-  }
-
-  .portrait-aura {
-    width: min(80vw, 450px);
-    height: min(80vw, 450px);
-    right: 50%;
-    transform: translateX(50%);
-  }
-
-  .portrait-sun {
-    width: min(72vw, 400px);
-    height: min(72vw, 400px);
-    right: 50%;
-    transform: translateX(50%);
-  }
-
-  .home-portrait-bg {
-    width: 90vw;
-    height: 90vw;
-    top: auto;
-    bottom: 8%;
-    right: 50%;
-    transform: translateX(50%);
-  }
-
-  .home-portrait-glow {
-    width: 80vw;
-    height: 55vw;
-    right: 50%;
-    transform: translateX(50%);
-  }
-
-  .hero-portrait {
-    width: 130%;
-  }
-
-  .portrait-tamil-mark {
-    right: 3%;
-    bottom: 8%;
-    opacity: 0.045;
-  }
-
-  .hero-instrument {
-    width: 110px;
-    left: 4%;
-    bottom: 2%;
-    opacity: 0.75;
-  }
-
-  .hero-circle-one {
-    width: 110vw;
-    height: 110vw;
-    right: -35%;
-    top: 55%;
-  }
-
-  .hero-circle-two {
-    width: 80vw;
-    height: 80vw;
-    right: -10%;
-    top: 62%;
-  }
-
-  .home-temple {
-    width: 100%;
-    height: 55%;
-    opacity: 0.6;
-  }
-
-  .home-temple img {
-    object-position: center top;
-
-    mask-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.55),
-      transparent 100%
-    );
-
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.55),
-      transparent 100%
-    );
-  }
-
-  .home-temple-overlay {
-    background:
-      linear-gradient(
-        to bottom,
-        rgba(244, 238, 227, 0.25),
-        rgba(244, 238, 227, 0.95) 62%,
-        #f4efe3 100%
-      );
-  }
-
-  .hero-manuscript-one {
-    left: -15%;
-    top: 10%;
-    font-size: 1rem;
-  }
-
-  .hero-manuscript-two {
-    display: none;
-  }
-
-  .hero-manuscript-three {
-    right: -25%;
-    top: 48%;
-    font-size: 1rem;
-  }
+.section-ambient-glow {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 9999px;
+  filter: blur(80px);
+  z-index: 1;
 }
 
 /* =========================================================
-   SMALL MOBILE
+   11. AUDIO ARCHIVE SECTION — De-boxed Editorial Listening Salon
 ========================================================= */
 
-@media (max-width: 560px) {
-  .home-hero-container {
-    width: calc(100% - 28px);
-    padding-top: 78px;
-    padding-bottom: 20px;
+.tamil-audio-section {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  padding: 5rem 0;
+}
+
+.audio-editorial-desk {
+  position: relative;
+  z-index: 10;
+  background: transparent;
+  border-top: 1px solid rgba(197, 178, 142, 0.45);
+  border-bottom: 1px solid rgba(197, 178, 142, 0.45);
+  padding: 2.5rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .audio-editorial-desk {
+    padding: 3rem 2.5rem;
+  }
+}
+
+.audio-example-quote {
+  position: relative;
+  margin-top: 1.5rem;
+  border-left: 3px solid #a47b3c;
+  background: rgba(238, 229, 211, 0.65);
+  padding: 1rem 1.25rem;
+}
+
+/* =========================================================
+   12. VIDEO ARCHIVE SECTION — காணொலிவடிவம்
+========================================================= */
+
+.home-video-archive {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  padding: 4.5rem 0 5rem;
+}
+
+.home-video-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
+}
+
+.home-video-item {
+  position: relative;
+}
+
+.home-video-frame-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgba(197, 178, 142, 0.65);
+  border-radius: 2px;
+  background-color: #16222a;
+  box-shadow: 0 4px 16px rgba(24, 43, 53, 0.08);
+  overflow: hidden;
+}
+
+.home-video-frame-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* =========================================================
+   13. FEATURED ARTICLE SECTION — கட்டுரை
+   - Old Tamil literary journal aesthetic
+   - Continuous parchment background with subtle texture
+   - Pure ink typography & scholarly manuscript blockquotes
+   - Generous reading width (850–950px) and line height
+========================================================= */
+
+.home-article-section,
+.tamil-article-section {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  padding: 5rem 0 6rem;
+}
+
+.home-article-container {
+  position: relative;
+  z-index: 10;
+  max-width: 920px;
+  width: min(920px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.home-article-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.65rem;
+  font-family: serif;
+  font-size: clamp(1.06rem, 1.25vw, 1.2rem);
+  font-weight: 500;
+  line-height: 2.05;
+  color: #273943;
+  letter-spacing: 0.01em;
+}
+
+.home-article-body p {
+  margin: 0;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* Manuscript Quote Styling — Scholarly & Restrained */
+.home-article-quote {
+  margin: 2.25rem 0;
+  padding: 1.25rem 1.75rem;
+  border-left: 3px solid #b18b4d;
+  background: rgba(238, 230, 214, 0.45);
+  border-radius: 1px;
+}
+
+.home-article-quote p {
+  text-align: left;
+}
+
+.home-article-quote-kural {
+  border-left: 3px solid #8b3f3f;
+  background: rgba(235, 226, 210, 0.55);
+}
+
+/* Fixed typography for the two literary context quotations across Desktop, Tablet, and Mobile */
+.home-article-quote-fixed p,
+p.home-quote-fixed-text {
+  font-size: 1.125rem !important; /* Fixed at 18px matching Desktop/Standard text-lg */
+  line-height: 2rem !important;    /* Fixed at 32px matching Desktop/Standard leading-8 */
+  overflow-wrap: break-word;
+}
+
+/* Closing Archival Ornament */
+.home-article-closing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(197, 178, 142, 0.55);
+}
+
+.home-article-closing-line {
+  flex: 1;
+  max-width: 140px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(176, 138, 62, 0.35) 50%,
+    rgba(176, 138, 62, 0.65) 100%
+  );
+}
+
+.home-article-closing-line:last-child {
+  transform: rotate(180deg);
+}
+
+.home-article-closing-glyph {
+  font-size: 1.15rem;
+  color: #a47b3c;
+  opacity: 0.8;
+  user-select: none;
+}
+
+/* =========================================================
+   13. CONSOLIDATED RESPONSIVE DESIGN — TABLET & MOBILE
+========================================================= */
+
+@media (max-width: 960px) {
+  .home-hero {
+    min-height: auto;
+    overflow: hidden;
   }
 
-  .home-welcome p {
-    font-size: 8px;
-    letter-spacing: 0.16em;
+  .hero-temple-zone {
+    display: none;
+  }
+
+  .home-hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+    padding: 60px 18px 30px;
+    margin: 0;
+    gap: 24px;
+  }
+
+  .home-hero-content {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    transform: none;
+    text-align: center;
   }
 
   .hero-title {
     margin-top: 14px;
-    font-size: clamp(2.6rem, 15vw, 4.5rem);
-    letter-spacing: -0.03em;
+    font-size: clamp(2.6rem, 11vw, 4rem);
+    line-height: 1.1;
   }
 
-  .hero-subtitle {
-    margin-top: 18px;
-    font-size: 1.15rem;
+  .home-hero-subtitle {
+    margin-top: 12px;
+    font-size: clamp(1.05rem, 4.2vw, 1.35rem);
   }
 
   .home-description {
-    margin-top: 22px;
-    font-size: 14px;
+    max-width: 480px;
+    margin-top: 18px;
+    font-size: 14.5px;
     line-height: 1.8;
   }
 
   .home-buttons {
     width: 100%;
-    gap: 10px;
-  }
-
-  .home-primary-button,
-  .home-secondary-button {
-    flex: 1;
-    min-width: 0;
-    padding-left: 14px;
-    padding-right: 14px;
-    font-size: 13px;
-    text-align: center;
-  }
-
-  .home-portrait-area {
-    height: 380px;
-    min-height: 380px;
-    margin-top: 8px;
-  }
-
-  .portrait-container {
-    height: 380px;
-  }
-
-  .portrait-frame {
-    width: min(88vw, 320px);
-    height: min(100vw, 380px);
-  }
-
-  .hero-portrait {
-    width: 136%;
-  }
-
-  .portrait-tamil-mark {
-    font-size: 4rem;
-  }
-
-  .hero-instrument {
-    width: 90px;
-    left: 2%;
-    bottom: 1%;
-  }
-
-  .hero-bottom-glow {
-    height: 90px;
-  }
-}
-/* =========================================================
-   MOBILE HERO FIX
-   Prevent text and portrait from overlapping
-========================================================= */
-
-@media (max-width: 768px) {
-  .home-page {
-    overflow-x: hidden;
-  }
-
-  .home-hero {
-    min-height: auto !important;
-    overflow: hidden;
-  }
-
-  .home-hero-container {
-    position: relative;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center;
-    gap: 0;
-    min-height: auto !important;
-    padding-top: 70px;
-  }
-
-  /* TEXT CONTENT */
-
-  .home-hero-content,
-  .hero-content {
-    position: relative !important;
-    z-index: 5;
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 0 20px !important;
-    text-align: center;
-  }
-
-  .home-welcome {
     justify-content: center;
+    gap: 12px;
+    margin-top: 22px;
   }
 
-  .hero-title {
-    font-size: clamp(3rem, 15vw, 5.5rem) !important;
-    line-height: 1.05 !important;
-    white-space: nowrap;
-  }
-
-  .home-hero-subtitle,
-  .hero-subtitle {
-    font-size: 1rem !important;
-  }
-
-  .home-year {
-    justify-content: center;
-  }
-
-  .home-description {
-    width: 100% !important;
-    max-width: 500px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    text-align: center;
-    font-size: 0.9rem !important;
-    line-height: 1.8 !important;
-  }
-
-  .home-buttons {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  /* PORTRAIT AREA */
-
-  .home-portrait-area,
-  .portrait-area {
-    position: relative !important;
-    z-index: 4;
-    width: 100% !important;
-    height: auto !important;
-    min-height: 430px;
-    margin-top: -10px;
-    display: flex !important;
-    align-items: flex-end !important;
-    justify-content: center !important;
-  }
-
-  .portrait-container {
-    position: relative !important;
-    width: min(100%, 420px) !important;
-    height: auto !important;
-    margin: 0 auto;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: flex-end !important;
-  }
-
-  .portrait-frame {
-    position: relative !important;
-    width: 100% !important;
-    height: auto !important;
-    inset: auto !important;
-    transform: none !important;
-  }
-
-  .portrait-frame-inner {
-    position: relative !important;
-    width: 100% !important;
-    height: auto !important;
-    overflow: visible !important;
-  }
-
-  .hero-portrait {
-    position: relative !important;
-    display: block;
-    width: min(92vw, 390px) !important;
-    height: auto !important;
-    max-height: none !important;
-    margin: 0 auto;
-    object-fit: contain !important;
-    transform: none !important;
-  }
-
-  /* Background portrait effects must stay behind */
-
-  .home-portrait-bg,
-  .home-portrait-glow {
-    position: absolute !important;
-    z-index: 1 !important;
-  }
-
-  .portrait-light {
-    z-index: 1 !important;
-  }
-
-  .portrait-aura,
-  .portrait-sun {
-    z-index: 1 !important;
-  }
-
-  .portrait-frame {
-    z-index: 3 !important;
-  }
-
-  /* Decorative Tamil letter */
-
-  .portrait-tamil-mark,
-  .portrait-writing {
-    z-index: 2 !important;
-    opacity: 0.08;
-  }
-
-  /* Hide large decorations that can cause mobile overlap */
-
-  .hero-instrument {
-    opacity: 0.08;
-    transform: scale(0.7);
-  }
-
-  .hero-circle {
+  /* Temple is centered behind content on mobile, uncropped kalasam pinnacle */
+  .home-temple {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(88vw, 340px);
+    height: 400px;
+    z-index: 1;
+    pointer-events: none;
     opacity: 0.25;
   }
 
-  /* Keep temple in the background */
+  .home-temple img,
+  .home-temple-image,
+  .temple-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center top;
+    opacity: 0.44;
+    filter: grayscale(0.55) sepia(0.48) contrast(1.15) brightness(0.82);
+    mix-blend-mode: multiply;
+    -webkit-mask-image:
+      linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 1) 45%,
+        rgba(0, 0, 0, 0.6) 65%,
+        rgba(0, 0, 0, 0.15) 84%,
+        transparent 96%
+      ),
+      radial-gradient(
+        ellipse 90% 82% at 50% 40%,
+        black 55%,
+        transparent 95%
+      );
+    mask-image:
+      linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 1) 45%,
+        rgba(0, 0, 0, 0.6) 65%,
+        rgba(0, 0, 0, 0.15) 84%,
+        transparent 96%
+      ),
+      radial-gradient(
+        ellipse 90% 82% at 50% 40%,
+        black 55%,
+        transparent 95%
+      );
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
 
-  .home-temple,
-  .temple-background,
-  .home-temple-overlay,
-  .temple-fade {
-    z-index: 0 !important;
+  .home-temple::after {
+    display: none !important;
+  }
+
+  .home-temple-overlay {
+    display: none !important;
+  }
+
+  .home-portrait-area {
+    width: 100%;
+    margin-top: 24px;
+  }
+
+  .vintage-gemini-artwork-wrapper {
+    max-width: 340px;
+    margin: 0 auto;
   }
 
   .hero-manuscript {
     display: none;
   }
-}
 
-
-/* =========================================================
-   SMALL MOBILE DEVICES
-========================================================= */
-
-@media (max-width: 480px) {
-  .home-hero-container {
-    padding-top: 60px;
+  .hero-bottom-glow {
+    height: 60px;
   }
 
-  .home-hero-content,
-  .hero-content {
-    padding: 0 14px !important;
+  .home-video-archive {
+    padding: 3.5rem 0 4rem;
+  }
+
+  .home-article-section {
+    padding: 3.5rem 0 4.5rem;
+  }
+
+  .home-article-body {
+    font-size: 1.02rem;
+    line-height: 1.95;
+    gap: 1.35rem;
+  }
+
+  .home-article-body p {
+    text-align: left;
+  }
+
+  .home-article-quote {
+    margin: 1.75rem 0;
+    padding: 1rem 1.25rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .home-hero-container {
+    padding: 48px 14px 20px;
   }
 
   .hero-title {
-    font-size: clamp(2.7rem, 14vw, 4.2rem) !important;
+    font-size: clamp(2.25rem, 11vw, 3.25rem);
   }
 
   .home-description {
-    font-size: 0.82rem !important;
-    line-height: 1.75 !important;
+    font-size: 13.5px;
+    line-height: 1.75;
   }
 
   .home-buttons {
-    display: grid !important;
+    display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 100%;
     gap: 8px;
   }
 
   .home-primary-button,
-  .hero-primary-button,
-  .home-secondary-button,
-  .hero-secondary-button {
+  .home-secondary-button {
     width: 100%;
-    padding-left: 8px !important;
-    padding-right: 8px !important;
-    font-size: 0.75rem !important;
+    padding: 11px 8px;
+    font-size: 0.75rem;
     white-space: nowrap;
   }
 
-  .home-portrait-area,
-  .portrait-area {
-    min-height: 360px;
-    margin-top: 0;
+  .vintage-gemini-artwork-wrapper {
+    max-width: 290px;
   }
 
-  .hero-portrait {
-    width: min(94vw, 360px) !important;
-  }
-}
-/* =========================================================
-   MOBILE HERO TITLE FIX
-   Prevent Tamil title from being clipped on mobile
-========================================================= */
-
-@media (max-width: 768px) {
-
-  /* Prevent horizontal clipping */
-  .home-page,
-  .home-hero,
-  .tamil-hero {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
+  .home-article-body {
+    font-size: 0.98rem;
+    line-height: 1.9;
   }
 
-  /* Main hero container */
-  .home-hero-container {
-    width: 100% !important;
-    max-width: 100% !important;
-
-    display: flex !important;
-    flex-direction: column !important;
-
-    align-items: center !important;
-    justify-content: flex-start !important;
-
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-
-  /* Hero text section */
-  .home-hero-content,
-  .hero-content {
-    position: relative !important;
-
-    left: auto !important;
-    right: auto !important;
-    top: auto !important;
-    bottom: auto !important;
-
-    width: 100% !important;
-    max-width: 100% !important;
-
-    margin: 0 !important;
-
-    padding-left: 14px !important;
-    padding-right: 14px !important;
-
-    transform: none !important;
-
-    text-align: center !important;
-    overflow: visible !important;
-  }
-
-  /* =========================================================
-     MAIN TITLE
-  ========================================================= */
-
-  .hero-title {
-    position: relative !important;
-
-    left: auto !important;
-    right: auto !important;
-
-    display: block !important;
-
-    width: 100% !important;
-    max-width: 100% !important;
-
-    margin: 18px auto 0 !important;
-    padding: 0 !important;
-
-    transform: none !important;
-
-    /* IMPORTANT: allow Tamil title to fit */
-    white-space: normal !important;
-
-    font-size: clamp(3rem, 12vw, 5rem) !important;
-    line-height: 1.1 !important;
-
-    text-align: center !important;
-
-    overflow: visible !important;
-
-    word-break: normal !important;
-    overflow-wrap: normal !important;
-  }
-
-  /* Subtitle */
-  .home-hero-subtitle,
-  .hero-subtitle {
-    width: 100% !important;
-    max-width: 100% !important;
-
-    margin-left: auto !important;
-    margin-right: auto !important;
-
-    text-align: center !important;
-
-    transform: none !important;
-  }
-
-  /* Welcome section */
-  .home-welcome {
-    width: 100% !important;
-
-    justify-content: center !important;
-
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-
-    transform: none !important;
-  }
-
-  /* Year */
-  .home-year {
-    width: 100% !important;
-
-    justify-content: center !important;
-
-    transform: none !important;
-  }
-
-  /* Description */
-  .home-description {
-    width: 100% !important;
-    max-width: 100% !important;
-
-    margin-left: auto !important;
-    margin-right: auto !important;
-
-    padding-left: 8px !important;
-    padding-right: 8px !important;
-
-    text-align: center !important;
-
-    transform: none !important;
-  }
-
-  /* Buttons */
-  .home-buttons {
-    width: 100% !important;
-
-    justify-content: center !important;
-
-    transform: none !important;
-  }
-}
-
-
-/* =========================================================
-   IPHONE / SMALL MOBILE
-========================================================= */
-
-@media (max-width: 480px) {
-
-  .home-hero-content,
-  .hero-content {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-  }
-
-  .hero-title {
-    /*
-      Use a smaller responsive size.
-      This prevents the first and last Tamil letters
-      from going outside the viewport.
-    */
-    font-size: clamp(2.6rem, 11.5vw, 4rem) !important;
-
-    width: 100% !important;
-    max-width: 100vw !important;
-
-    letter-spacing: -0.02em !important;
-
-    white-space: nowrap !important;
-
-    text-align: center !important;
-
-    transform: none !important;
-  }
-
-  .home-hero-subtitle,
-  .hero-subtitle {
-    font-size: 0.95rem !important;
-  }
-
-  .home-description {
-    font-size: 0.82rem !important;
-    line-height: 1.75 !important;
+  .home-article-quote {
+    padding: 0.875rem 1rem;
   }
 }

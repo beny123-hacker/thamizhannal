@@ -1,16 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f5f0e6;
-  --foreground: #332a22;
+  --background: #f4efe3;
+  --foreground: #273943;
 
-  --primary: #251c15;
+  --primary: #22323d;
   --gold: #b08a3e;
   --gold-light: #d4b56a;
+  --maroon: #8b3f3f;
 
-  --paper: #fffdf7;
-  --brown: #332a22;
-  --dark-brown: #251c15;
+  --paper: #fbf8f2;
+  --paper-card: #f8f3e8;
+  --border-gold: #c8b99e;
+  --dark: #22323d;
 }
 
 html {
@@ -19,9 +21,158 @@ html {
 
 body {
   margin: 0;
-  background: var(--background);
-  color: var(--foreground);
+  background-color: #f4efe3;
+  color: #273943;
   font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Fixed site-wide archival parchment foundation */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("https://rgbwvpwbucaprqilgvdv.supabase.co/storage/v1/object/public/thamizhannal/images/parchment-texture.jpg");
+  background-size: 736px auto;
+  background-repeat: repeat;
+  opacity: 0.14;
+  mix-blend-mode: multiply;
+  filter: contrast(1.04) brightness(1.01);
+}
+
+/* Subtle parchment texture across the entire project */
+.parchment-texture-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("https://rgbwvpwbucaprqilgvdv.supabase.co/storage/v1/object/public/thamizhannal/images/parchment-texture.jpg");
+  background-size: 736px auto;
+  background-repeat: repeat;
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+  filter: contrast(1.04) brightness(1.01);
+}
+
+.section-blend-divider {
+  position: relative;
+  z-index: 10;
+  height: 1px;
+  width: min(1080px, 90%);
+  margin: 0 auto;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(176, 138, 62, 0.15) 15%,
+    rgba(176, 138, 62, 0.45) 50%,
+    rgba(176, 138, 62, 0.15) 85%,
+    transparent 100%
+  );
+}
+
+/* Editorial Archival Rules & Dividers */
+.archival-hairline {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(197, 178, 142, 0.4) 20%,
+    rgba(197, 178, 142, 0.6) 50%,
+    rgba(197, 178, 142, 0.4) 80%,
+    transparent 100%
+  );
+}
+
+.archival-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #8a6636;
+}
+
+.archival-kicker::before,
+.archival-kicker::after {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background-color: #b08a3e;
+  opacity: 0.7;
+}
+
+/* Subtle Faint Tamil Manuscript Glyph Watermark */
+.faint-tamil-watermark {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  font-family: serif;
+  font-weight: 900;
+  color: #7a5a2e;
+  opacity: 0.04;
+  line-height: 1;
+  z-index: 0;
+}
+
+/* Editorial Literary Buttons */
+.editorial-btn-ink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.6rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #f7f2e7;
+  background-color: #1e2e38;
+  border: 1px solid #2b414f;
+  box-shadow: 0 2px 6px -1px rgba(30, 46, 56, 0.2);
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.editorial-btn-ink:hover {
+  background-color: #273d4b;
+  border-color: #b08a3e;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -2px rgba(30, 46, 56, 0.28);
+}
+
+.editorial-btn-paper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.6rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #3b3127;
+  background-color: rgba(248, 243, 232, 0.85);
+  border: 1px solid #c9baa1;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.editorial-btn-paper:hover {
+  background-color: #f5eedf;
+  border-color: #a47b3c;
+  color: #1e2e38;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px -2px rgba(92, 66, 33, 0.08);
 }
 
 * {
@@ -30,17 +181,16 @@ body {
 
 ::selection {
   background: var(--gold);
-  color: var(--paper);
+  color: #fffdf7;
 }
 
-/* Scrollbar */
-
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--dark-brown);
+  background: #251c15;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -51,56 +201,6 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--gold-light);
 }
-@import "tailwindcss";
-
-:root {
-  --background: #f5f0e6;
-  --foreground: #332a22;
-
-  --dark: #251c15;
-  --gold: #b08a3e;
-  --gold-light: #d4b56a;
-
-  --paper: #fffdf7;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-::selection {
-  background: #b08a3e;
-  color: #fffdf7;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #251c15;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #b08a3e;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #d4b56a;
-}
-
 
 /* ========================================
    SITE HEADER
@@ -137,7 +237,6 @@ body {
   color: #75665a;
 }
 
-
 /* ========================================
    NAVBAR
 ======================================== */
@@ -146,34 +245,25 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-
   background: var(--dark);
-
-  box-shadow:
-    0 5px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
 }
 
 .navbar-container {
   width: min(1200px, 92%);
   min-height: 60px;
-
   margin: 0 auto;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   gap: 30px;
 }
 
 .navbar-logo {
   text-decoration: none;
-
   color: var(--gold-light);
-
   font-size: 1.25rem;
   font-weight: 700;
-
   white-space: nowrap;
 }
 
@@ -181,31 +271,22 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-
   overflow-x: auto;
 }
 
 .navbar-links a {
   padding: 10px 14px;
-
   text-decoration: none;
-
   color: #f5f0e6;
-
   font-size: 0.95rem;
-
   border-radius: 6px;
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .navbar-links a:hover {
   background: rgba(176, 138, 62, 0.2);
   color: var(--gold-light);
 }
-
 
 /* ========================================
    MAIN CONTENT
@@ -215,61 +296,47 @@ body {
   min-height: 70vh;
 }
 
-
 /* ========================================
    FOOTER
 ======================================== */
 
 .site-footer {
   margin-top: 80px;
-
   background: var(--dark);
   color: #e9dfd2;
 }
 
 .footer-container {
   width: min(1200px, 92%);
-
   margin: 0 auto;
-
   padding: 60px 0 40px;
-
   display: grid;
   grid-template-columns: 2fr 1fr;
-
   gap: 60px;
 }
 
 .footer-brand h2 {
   margin: 0 0 16px;
-
   color: var(--gold-light);
-
   font-size: 2rem;
 }
 
 .footer-brand p {
   max-width: 600px;
-
   margin: 0;
-
   line-height: 1.8;
-
   color: #cbbfb3;
 }
 
 .footer-links {
   display: flex;
   flex-direction: column;
-
   gap: 12px;
 }
 
 .footer-links a {
   text-decoration: none;
-
   color: #e9dfd2;
-
   transition: color 0.2s ease;
 }
 
@@ -279,20 +346,15 @@ body {
 
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-
   padding: 20px;
-
   text-align: center;
 }
 
 .footer-bottom p {
   margin: 0;
-
   font-size: 0.85rem;
-
   color: #978b81;
 }
-
 
 /* ========================================
    MOBILE
@@ -313,25 +375,19 @@ body {
 
   .navbar-links {
     width: 100%;
-
     justify-content: flex-start;
-
     gap: 2px;
   }
 
   .navbar-links a {
     padding: 10px 12px;
-
     font-size: 0.85rem;
-
     white-space: nowrap;
   }
 
   .footer-container {
     grid-template-columns: 1fr;
-
     gap: 35px;
-
     padding: 45px 0 30px;
   }
 }

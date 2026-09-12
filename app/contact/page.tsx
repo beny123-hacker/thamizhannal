@@ -1,41 +1,77 @@
 "use client";
 
+import React, { useState } from "react";
 import "./contact.css";
 
 export default function ContactPage() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [loading, setLoading] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (loading) return;
 
     const form = e.currentTarget;
+    const nameInput = form.elements.namedItem("name") as HTMLInputElement;
+    const emailInput = form.elements.namedItem("email") as HTMLInputElement;
+    const messageInput = form.elements.namedItem("message") as HTMLTextAreaElement;
 
-    const name = (
-      form.elements.namedItem("name") as HTMLInputElement
-    ).value;
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const message = messageInput.value.trim();
 
-    const email = (
-      form.elements.namedItem("email") as HTMLInputElement
-    ).value;
+    if (!name || !email || !message) {
+      setStatusMessage({
+        type: "error",
+        text: "Unable to send your message. Please fill in all required fields.",
+      });
+      return;
+    }
 
-    const message = (
-      form.elements.namedItem("message") as HTMLTextAreaElement
-    ).value;
+    setLoading(true);
+    setStatusMessage(null);
 
-    const subject = encodeURIComponent(
-      `தமிழண்ணல் அறக்கட்டளை - Contact from ${name}`
-    );
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, message }),
+      });
 
-    const body = encodeURIComponent(
-      `Name: ${name}\n\nEmail: ${email}\n\nMessage:\n${message}`
-    );
+      const data = await res.json().catch(() => null);
 
-    window.location.href =
-      `mailto:thamizhannalfoundation@gmail.com?subject=${subject}&body=${body}`;
+      if (res.ok && data?.success) {
+        setStatusMessage({
+          type: "success",
+          text: data.message || "Your message has been sent successfully.",
+        });
+        form.reset();
+      } else {
+        setStatusMessage({
+          type: "error",
+          text: data?.error || "Unable to send your message.",
+        });
+      }
+    } catch {
+      setStatusMessage({
+        type: "error",
+        text: "Unable to send your message.",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <main className="contact-page">
-      <section className="contact-section">
-        <div className="contact-container">
+    <main className="contact-page relative overflow-hidden">
+      <section className="contact-section relative">
+        <div className="parchment-texture-layer" />
+        <div className="contact-container relative z-10">
 
           {/* HEADER */}
           <div className="contact-header">
@@ -116,32 +152,47 @@ export default function ContactPage() {
                 />
               </div>
 
+              {/* STATUS FEEDBACK MESSAGE */}
+              {statusMessage && (
+                <div
+                  role="alert"
+                  className={`contact-status-message ${
+                    statusMessage.type === "success"
+                      ? "contact-status-success"
+                      : "contact-status-error"
+                  }`}
+                >
+                  {statusMessage.text}
+                </div>
+              )}
+
               {/* SEND */}
               <button
                 type="submit"
                 className="contact-submit"
+                disabled={loading}
               >
-                அனுப்பவும் — Send
+                {loading ? "அனுப்பப்படுகிறது... — Sending..." : "அனுப்பவும் — Send"}
               </button>
 
             </form>
           </div>
 
           {/* FACEBOOK — BELOW THE FORM */}
-         <div className="contact-facebook text-center">
-  <p className="contact-facebook-label">
-    Or connect on
-  </p>
+          <div className="contact-facebook text-center">
+            <p className="contact-facebook-label">
+              Or connect on
+            </p>
 
-  <a
-    href="https://www.facebook.com/%E0%AE%A4%E0%AE%AE%E0%AE%BF%E0%AE%B4%E0%AE%A3%E0%AF%8D%E0%AE%A3%E0%AE%B2%E0%AF%8D-1268233926536749/"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="contact-facebook-button inline-flex"
-  >
-    Facebook →
-  </a>
-</div>
+            <a
+              href="https://www.facebook.com/%E0%AE%A4%E0%AE%AE%E0%AE%BF%E0%AE%B4%E0%AE%A3%E0%AF%8D%E0%AE%A3%E0%AE%B2%E0%AF%8D-1268233926536749/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-facebook-button inline-flex"
+            >
+              Facebook →
+            </a>
+          </div>
 
         </div>
       </section>

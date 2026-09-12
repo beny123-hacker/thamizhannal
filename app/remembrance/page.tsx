@@ -139,9 +139,12 @@ export default function RemembrancePage() {
   }, [selectedIndex]);
 
   return (
-    <main className="remembrance-page">
+    <main className="remembrance-page relative min-h-screen overflow-hidden">
+      {/* Full-Page Parchment Texture Layer */}
+      <div className="parchment-texture-layer" />
+
       {/* HERO */}
-      <section className="remembrance-hero">
+      <section className="remembrance-hero relative">
         <div className="remembrance-hero-overlay" />
 
         <div className="remembrance-hero-content">

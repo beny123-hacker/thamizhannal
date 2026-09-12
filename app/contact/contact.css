@@ -204,10 +204,52 @@
     transform 0.3s ease;
 }
 
-.contact-submit:hover {
+.contact-submit:hover:not(:disabled) {
   border-color: #273943;
   background: #273943;
   transform: translateY(-1px);
+}
+
+.contact-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* --------------------------------
+   FEEDBACK STATUS MESSAGE
+-------------------------------- */
+
+.contact-status-message {
+  padding: 13px 18px;
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 600;
+  border-radius: 0;
+  animation: contactFadeIn 0.25s ease;
+}
+
+.contact-status-success {
+  background: #edf5ed;
+  border: 1px solid #7ea885;
+  color: #24522d;
+}
+
+.contact-status-error {
+  background: #fbf0ef;
+  border: 1px solid #dca4a4;
+  color: #8b3f3f;
+}
+
+@keyframes contactFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* --------------------------------

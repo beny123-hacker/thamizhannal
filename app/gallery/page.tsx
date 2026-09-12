@@ -282,14 +282,16 @@ export default function GalleryPage() {
   }, [selectedIndex]);
 
   return (
-    <main className="gallery-page">
+    <main className="gallery-page relative min-h-screen overflow-hidden">
+      {/* Full-Page Parchment Texture Layer */}
+      <div className="parchment-texture-layer" />
 
       {/* =================================================
           HERO
       ================================================= */}
 
-      <section className="gallery-hero">
-        <div className="gallery-hero-content">
+      <section className="gallery-hero relative">
+        <div className="gallery-hero-content relative z-10">
 
           <p className="gallery-kicker">
             PHOTO GALLERY

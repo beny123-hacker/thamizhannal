@@ -3,16 +3,26 @@
 ===================================================== */
 
 .gallery-page {
+  position: relative;
   width: 100%;
   min-height: 100vh;
   background:
     radial-gradient(
-      circle at top center,
-      rgba(201, 171, 104, 0.12),
-      transparent 42%
+      ellipse at 50% 12%,
+      rgba(215, 168, 80, 0.12) 0%,
+      rgba(200, 150, 60, 0.02) 45%,
+      transparent 70%
     ),
-    #f7f4ee;
-  color: #263946;
+    linear-gradient(
+      180deg,
+      #f7f3e9 0%,
+      #f5eee1 25%,
+      #f4efe3 50%,
+      #f6f0e4 75%,
+      #f4efe3 100%
+    );
+  color: #273943;
+  overflow-x: hidden;
 }
 
 
@@ -36,10 +46,12 @@
 ===================================================== */
 
 .gallery-hero {
+  position: relative;
   width: 100%;
   padding: 68px 20px 56px;
   text-align: center;
-  border-bottom: 1px solid rgba(168, 128, 64, 0.25);
+  background: transparent;
+  border-bottom: 1px solid rgba(197, 178, 142, 0.45);
 }
 
 .gallery-hero-content {
@@ -195,24 +207,26 @@
   position: relative;
   display: block;
   width: 100%;
-  padding: 0;
+  padding: 8px;
   overflow: hidden;
   cursor: pointer;
-  border: none;
-  border-radius: 12px;
-  background: #ffffff;
-  box-shadow:
-    0 10px 26px rgba(35, 47, 56, 0.10);
+  border: 1px solid rgba(197, 178, 142, 0.45);
+  border-radius: 2px;
+  background: rgba(251, 247, 238, 0.75);
+  box-shadow: 0 4px 16px -2px rgba(45, 35, 20, 0.07);
   text-align: left;
   transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease;
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .gallery-card:hover {
-  transform: translateY(-8px);
-  box-shadow:
-    0 20px 42px rgba(35, 47, 56, 0.18);
+  transform: translateY(-4px);
+  background: rgba(255, 252, 246, 0.95);
+  border-color: rgba(176, 138, 62, 0.65);
+  box-shadow: 0 10px 26px -3px rgba(45, 35, 20, 0.13);
 }
 
 .gallery-card:focus-visible {

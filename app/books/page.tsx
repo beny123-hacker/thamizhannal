@@ -995,8 +995,11 @@ export default function BooksPage() {
 
   if (selectedBook) {
     return (
-      <div className="min-h-screen bg-[#f4efe3]">
-        <section className="border-b border-[#cdbfa7] bg-[#ebe3d2]">
+      <div className="relative min-h-screen bg-[#f4efe3]">
+        {/* Full-Page Parchment Texture Layer */}
+        <div className="parchment-texture-layer" />
+
+        <section className="relative z-10 border-b border-[#cdbfa7]/80 bg-[#ebe3d2]/70 backdrop-blur-xs">
           <div className="mx-auto max-w-6xl px-5 py-8">
             <button
   type="button"
@@ -1073,42 +1076,62 @@ export default function BooksPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f4efe3]">
-      {/* HERO */}
-      <section className="border-b border-[#cdbfa7] bg-[#ebe3d2]">
-        <div className="mx-auto max-w-6xl px-5 py-14 text-center">
-          <p className="text-[10px] font-extrabold uppercase tracking-[0.3em] text-[#8a6636]">
-            Library
-          </p>
+    <div className="relative min-h-screen bg-[#f4efe3]">
+      {/* Full-Page Parchment Texture Layer covering entire page */}
+      <div className="parchment-texture-layer" />
 
-          <h1 className="mt-4 font-serif text-4xl font-extrabold text-[#273943] md:text-5xl">
+      {/* HERO */}
+      <section className="relative z-10 overflow-hidden border-b border-[#ded2bd] bg-gradient-to-b from-[#ebe3d2]/60 via-[#f0e9dc]/40 to-transparent">
+        {/* Layer 2: Warm ambient light orbs */}
+        <div className="pointer-events-none absolute -right-10 top-1/3 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-[#d4a853]/20 blur-3xl" />
+        <div className="pointer-events-none absolute -left-16 top-10 h-72 w-72 rounded-full bg-[#b08a3e]/15 blur-3xl" />
+
+        {/* Top subtle accent line */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#b08a3e]/30 to-transparent" />
+
+        {/* Content Container — Centered & Balanced Archival Library Header */}
+        <div className="relative mx-auto max-w-4xl px-5 py-12 text-center md:py-16">
+          <div className="inline-flex items-center gap-2 border border-[#b49a6d] bg-[#f8f3e8] px-3.5 py-1 text-[10px] font-extrabold uppercase tracking-[0.25em] text-[#8a6636] shadow-xs">
+            <span>Library · நூல் களஞ்சியம்</span>
+          </div>
+
+          <h1 className="mt-4 font-serif text-4xl font-extrabold text-[#273943] md:text-5xl lg:text-6xl">
             நூல்கள்
           </h1>
 
-          <p className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#8b3f3f]">
-            Books by Thamizhannal
+          <p className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#8b3f3f] md:text-sm">
+            Books & Research Works by Thamizhannal
           </p>
 
-          <div className="mx-auto mt-4 h-1 w-16 bg-[#8b3f3f]" />
+          <div className="mx-auto mt-4 h-1 w-20 bg-[#8b3f3f]" />
 
-          <p className="mx-auto mt-5 max-w-3xl text-sm font-medium leading-7 text-[#62594f]">
-            தமிழில் தேடல் வசதியுடன் புத்தக வடிவில் பார்க்க, படிக்க,
-            பதிவிறக்கம் செய்ய — புத்தகத்தின் படத்தை சொடுக்கவும்.
+          <p className="mx-auto mt-5 max-w-2xl text-sm font-medium leading-7 text-[#514940] md:text-base md:leading-8">
+            இலக்கியம், தொல்காப்பியம், திருக்குறள், இலக்கணம், உரை, மொழியியல், ஆய்வு மற்றும் தமிழண்ணல் சிந்தனைகள் உள்ளிட்ட 82 அரிய நூல்களின் முழு மின்னூல் களஞ்சியம்.
           </p>
+
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs font-bold text-[#665c50]">
+            <span className="inline-flex items-center gap-1.5 border border-[#c8b99e] bg-[#f8f3e8] px-3.5 py-1.5 shadow-xs">
+              📖 {books.length} அரிய நூல்கள்
+            </span>
+          
+            <span className="inline-flex items-center gap-1.5 border border-[#c8b99e] bg-[#f8f3e8] px-3.5 py-1.5 shadow-xs">
+              📥 இலவச பதிவிறக்கம்
+            </span>
+          </div>
         </div>
       </section>
 
-      {/* CATEGORY FILTER */}
-      <section className="border-b border-[#cdbfa7] bg-[#f8f3e8]">
-        <div className="mx-auto max-w-6xl px-5 py-7">
-          <div className="flex flex-wrap justify-center gap-2">
+      {/* CATEGORY FILTER — Literary Editorial Tabs */}
+      <section className="relative z-10 border-b border-[#ded2bd]/80 bg-[#f4efe3]/60 backdrop-blur-[2px] py-5">
+        <div className="mx-auto max-w-6xl px-5">
+          <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
             <button
               type="button"
               onClick={() => setSelectedCategory("அனைத்தும்")}
-              className={`px-4 py-2 text-sm font-bold transition ${
+              className={`border-b-2 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider transition duration-200 sm:text-sm ${
                 selectedCategory === "அனைத்தும்"
-                  ? "bg-[#273943] text-white"
-                  : "border border-[#c8b99e] text-[#514940] hover:bg-[#ebe3d2]"
+                  ? "border-[#1e2e38] bg-[#1e2e38] text-[#f7f2e7]"
+                  : "border-transparent bg-[#f8f3e8]/80 text-[#5c5246] hover:border-[#b49a6d] hover:bg-[#eee5d3]/70"
               }`}
             >
               அனைத்தும் ({books.length})
@@ -1124,10 +1147,10 @@ export default function BooksPage() {
                   key={category}
                   type="button"
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 text-sm font-bold transition ${
+                  className={`border-b-2 px-3.5 py-1.5 text-xs font-bold transition duration-200 sm:text-sm ${
                     selectedCategory === category
-                      ? "bg-[#8b3f3f] text-white"
-                      : "border border-[#c8b99e] text-[#514940] hover:bg-[#ebe3d2]"
+                      ? "border-[#8b3f3f] bg-[#8b3f3f] text-white"
+                      : "border-transparent bg-[#f8f3e8]/80 text-[#5c5246] hover:border-[#b49a6d] hover:bg-[#eee5d3]/70"
                   }`}
                 >
                   {category} ({count})
@@ -1138,8 +1161,9 @@ export default function BooksPage() {
         </div>
       </section>
 
+
       {/* BOOK LIST */}
-      <main className="mx-auto max-w-7xl px-5 py-14">
+      <main className="relative z-10 mx-auto max-w-7xl px-5 py-14">
         <div className="mb-10 text-center">
           <p className="text-[10px] font-extrabold uppercase tracking-[0.25em] text-[#8a6636]">
             {selectedCategory === "அனைத்தும்"
@@ -1158,7 +1182,7 @@ export default function BooksPage() {
   {filteredBooks.map((book) => (
     <article
       key={book.id}
-      className="group overflow-hidden border border-[#c9bba3] bg-[#f8f3e8] shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+      className="group overflow-hidden border border-[#c9bba3]/85 bg-[#f8f3e8]/92 backdrop-blur-xs shadow-xs transition duration-300 hover:-translate-y-1 hover:border-[#b08a3e] hover:shadow-md"
     >
       <button
         type="button"

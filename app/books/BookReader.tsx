@@ -119,9 +119,10 @@ export default function BookReader({
           canvas.width = viewport.width;
           canvas.height = viewport.height;
 
-          await page.render({
+          await (page.render as any)({
             canvasContext: context,
             viewport,
+            canvas,
           }).promise;
 
           renderedPages.push(
@@ -234,6 +235,7 @@ export default function BookReader({
                 showCover={true}
                 mobileScrollSupport={false}
                 useMouseEvents={true}
+                clickEventForward={true}
                 swipeDistance={30}
                 onFlip={(event) => {
                   setCurrentPage(event.data + 1);

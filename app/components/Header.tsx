@@ -24,31 +24,31 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#c8b79c] bg-[#182b35]/95 shadow-md backdrop-blur-md">
-      <div className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+    <header className="sticky top-0 z-50 border-b border-[#c8b79c]/30 bg-[#162a36] shadow-sm">
+      <div className="relative mx-auto flex max-w-7xl items-center justify-between px-6 py-2.5">
         {/* LOGO */}
         <Link
           href="/"
           onClick={() => setMenuOpen(false)}
           className="flex items-center gap-3"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#c8a96b] bg-[#233b47] text-lg font-bold text-[#e6d4ad]">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[#c8a96b]/80 bg-[#1e3847] text-base font-bold text-[#e6d4ad]">
             த
           </div>
 
           <div>
-            <h1 className="text-base font-extrabold tracking-wide text-[#f2e7cf]">
+            <h1 className="text-base font-bold tracking-wide text-[#f2e7cf]">
               தமிழண்ணல்
             </h1>
 
-            <p className="text-[8px] font-semibold uppercase tracking-[0.25em] text-[#c8b79c]">
+            <p className="text-[7.5px] font-semibold uppercase tracking-[0.28em] text-[#c8b79c]">
               Thamizhannal
             </p>
           </div>
         </Link>
 
         {/* DESKTOP NAVIGATION */}
-        <nav className="hidden items-center gap-5 lg:flex">
+        <nav className="hidden items-center gap-6 lg:flex">
           {navItems.map((item) => {
             const isActive = isActiveLink(item.href);
 

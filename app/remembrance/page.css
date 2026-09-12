@@ -10,12 +10,25 @@
 ===================================================== */
 
 .remembrance-page {
+  position: relative;
   min-height: 100vh;
-
-  background: #f8f5ef;
-
-  color: #2d3940;
-
+  background:
+    radial-gradient(
+      ellipse at 50% 12%,
+      rgba(215, 168, 80, 0.1) 0%,
+      rgba(200, 150, 60, 0.02) 45%,
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      #f7f3e9 0%,
+      #f5eee1 25%,
+      #f4efe3 50%,
+      #f6f0e4 75%,
+      #f4efe3 100%
+    );
+  color: #273943;
+  overflow-x: hidden;
   font-family: inherit;
 }
 
@@ -26,26 +39,11 @@
 
 .remembrance-hero {
   position: relative;
-
   overflow: hidden;
-
   padding: 68px 20px 60px;
-
   text-align: center;
-
-  background:
-    radial-gradient(
-      circle at top center,
-      rgba(170, 133, 78, 0.08),
-      transparent 50%
-    ),
-    linear-gradient(
-      180deg,
-      #f8f5ef 0%,
-      #f4f0e8 100%
-    );
-
-  border-bottom: 1px solid #ded5c6;
+  background: transparent;
+  border-bottom: 1px solid rgba(197, 178, 142, 0.45);
 }
 
 
@@ -257,25 +255,19 @@
 
 .remembrance-image-wrapper {
   position: relative;
-
   width: 100%;
-
   overflow: hidden;
-
-  background: #f3eee7;
-
-  box-shadow:
-    0 8px 24px rgba(37, 45, 49, 0.09);
-
+  background: #ebd8b8;
+  border: 1px solid rgba(197, 178, 142, 0.45);
+  box-shadow: 0 4px 16px -2px rgba(45, 35, 20, 0.08);
   transition:
     box-shadow 0.3s ease,
-    transform 0.3s ease;
+    border-color 0.3s ease;
 }
 
-
 .remembrance-card:hover .remembrance-image-wrapper {
-  box-shadow:
-    0 16px 36px rgba(37, 45, 49, 0.15);
+  border-color: rgba(176, 138, 62, 0.65);
+  box-shadow: 0 10px 26px -3px rgba(45, 35, 20, 0.14);
 }
 
 
