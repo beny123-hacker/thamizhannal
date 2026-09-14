@@ -800,12 +800,117 @@
   background: rgba(235, 226, 210, 0.55);
 }
 
-/* Fixed typography for the two literary context quotations across Desktop, Tablet, and Mobile */
+/* Responsive Literary Typography for Poem and Thirukkural Quotations */
+.home-article-quote-fixed {
+  max-width: 100%;
+}
+
 .home-article-quote-fixed p,
 p.home-quote-fixed-text {
-  font-size: 1.125rem !important; /* Fixed at 18px matching Desktop/Standard text-lg */
-  line-height: 2rem !important;    /* Fixed at 32px matching Desktop/Standard leading-8 */
-  overflow-wrap: break-word;
+  font-family: serif;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 1.125rem !important; /* 18px Desktop (> 768px) */
+  line-height: 2rem !important;    /* 32px Desktop */
+  white-space: pre-line !important;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.home-article-quote-kural p,
+.home-article-quote-kural p.home-quote-fixed-text {
+  font-weight: 600 !important;
+}
+
+/* Tablet Portrait (<= 768px) */
+@media (max-width: 768px) {
+  .home-article-quote-fixed {
+    padding: 1.125rem 1.25rem;
+  }
+
+  .home-article-quote-fixed p,
+  p.home-quote-fixed-text {
+    font-size: 1.0625rem !important; /* 17px */
+    line-height: 1.875rem !important; /* 30px */
+  }
+}
+
+/* Large Mobile (<= 480px) — iPhone 15 Pro Max (430px) */
+@media (max-width: 480px) {
+  .home-article-quote.home-article-quote-fixed {
+    padding: 0.875rem 0.6875rem !important; /* 11px horizontal padding */
+  }
+
+  .home-article-quote-fixed p,
+  p.home-quote-fixed-text {
+    font-size: 0.75625rem !important; /* 12.1px */
+    line-height: 1.4375rem !important; /* 23px */
+  }
+}
+
+/* Medium-Large Mobile (<= 415px) — iPhone 11 / XR (414px) */
+@media (max-width: 415px) {
+  .home-article-quote.home-article-quote-fixed {
+    padding: 0.875rem 0.625rem !important; /* 10px horizontal padding */
+  }
+
+  .home-article-quote-fixed p,
+  p.home-quote-fixed-text {
+    font-size: 0.71875rem !important; /* 11.5px */
+    line-height: 1.375rem !important;  /* 22px */
+  }
+}
+
+/* Standard Mobile (<= 395px) — iPhone 14 / 15 (390px) */
+@media (max-width: 395px) {
+  .home-article-quote.home-article-quote-fixed {
+    padding: 0.875rem 0.5625rem !important; /* 9px horizontal padding */
+  }
+
+  .home-article-quote-fixed p,
+  p.home-quote-fixed-text {
+    font-size: 0.66875rem !important; /* 10.7px */
+    line-height: 1.3125rem !important; /* 21px */
+  }
+}
+
+/* Compact Mobile (<= 378px) — iPhone SE / 11 Pro (375px) */
+@media (max-width: 378px) {
+  .home-article-quote.home-article-quote-fixed {
+    padding: 0.8125rem 0.5rem !important; /* 8px horizontal padding */
+  }
+
+  .home-article-quote-fixed p,
+  p.home-quote-fixed-text {
+    font-size: 0.63125rem !important; /* 10.1px */
+    line-height: 1.25rem !important;   /* 20px */
+  }
+}
+
+/* Small Android (<= 362px) — Standard Android (360px) */
+@media (max-width: 362px) {
+  .home-article-quote.home-article-quote-fixed {
+    padding: 0.8125rem 0.5rem !important; /* 8px horizontal padding */
+  }
+
+  .home-article-quote-fixed p,
+  p.home-quote-fixed-text {
+    font-size: 0.6rem !important;     /* 9.6px */
+    line-height: 1.1875rem !important; /* 19px */
+  }
+}
+
+/* Very Small Mobile (<= 330px) — Compact Viewports (320px) */
+@media (max-width: 330px) {
+  .home-article-quote.home-article-quote-fixed {
+    padding: 0.75rem 0.4375rem !important; /* 7px horizontal padding */
+  }
+
+  .home-article-quote-fixed p,
+  p.home-quote-fixed-text {
+    font-size: 0.525rem !important;   /* 8.4px */
+    line-height: 1.0625rem !important; /* 17px */
+  }
 }
 
 /* Closing Archival Ornament */

@@ -69,8 +69,77 @@ export default function BookReader({
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
+  const containerRef = useRef<HTMLElement>(null);
   const flipBookRef = useRef<any>(null);
+
+  // Sync fullscreen state with native browser events (including ESC key exit)
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      const activeElement =
+        document.fullscreenElement ||
+        (document as any).webkitFullscreenElement;
+      setIsFullscreen(Boolean(activeElement));
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
+    };
+  }, []);
+
+  const toggleFullscreen = async () => {
+    try {
+      if (!isFullscreen) {
+        const el = containerRef.current as any;
+        if (el?.requestFullscreen) {
+          try {
+            await el.requestFullscreen();
+          } catch {
+            // Graceful fallback for environments with restricted fullscreen API (e.g. iOS Safari)
+            setIsFullscreen(true);
+          }
+        } else if (el?.webkitRequestFullscreen) {
+          try {
+            await el.webkitRequestFullscreen();
+          } catch {
+            setIsFullscreen(true);
+          }
+        } else {
+          setIsFullscreen(true);
+        }
+      } else {
+        const doc = document as any;
+        if (doc.fullscreenElement || doc.webkitFullscreenElement) {
+          if (doc.exitFullscreen) {
+            await doc.exitFullscreen();
+          } else if (doc.webkitExitFullscreen) {
+            await doc.webkitExitFullscreen();
+          }
+        }
+        setIsFullscreen(false);
+      }
+    } catch (err) {
+      console.error("Fullscreen error:", err);
+      setIsFullscreen((prev) => !prev);
+    }
+  };
+
+  // Support ESC key to exit fullscreen in all environments
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isFullscreen) {
+        toggleFullscreen();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isFullscreen]);
 
   useEffect(() => {
     let isMounted = true;
@@ -161,22 +230,103 @@ export default function BookReader({
     };
   }, [pdfUrl]);
 
-  const nextPage = () => {
+  // Robust Scroll Lock & Anchor during page flips
+  const scrollLockRef = useRef<{
+    active: boolean;
+    targetY: number;
+    timerId: any;
+    rafId: any;
+  }>({
+    active: false,
+    targetY: 0,
+    timerId: null,
+    rafId: null,
+  });
+
+  const lockScrollPosition = () => {
+    if (isFullscreen) return;
+    const currentY = window.scrollY;
+
+    if (scrollLockRef.current.timerId) {
+      clearTimeout(scrollLockRef.current.timerId);
+    }
+    if (scrollLockRef.current.rafId) {
+      cancelAnimationFrame(scrollLockRef.current.rafId);
+    }
+
+    scrollLockRef.current.active = true;
+    scrollLockRef.current.targetY = currentY;
+
+    const startTime = performance.now();
+    const DURATION = 1200; // Covers 900ms flippingTime + state update + DOM settlement
+
+    const maintainLock = () => {
+      if (!scrollLockRef.current.active) return;
+      const elapsed = performance.now() - startTime;
+
+      if (Math.abs(window.scrollY - scrollLockRef.current.targetY) > 1) {
+        window.scrollTo({
+          top: scrollLockRef.current.targetY,
+          behavior: "instant" as ScrollBehavior,
+        });
+      }
+
+      if (elapsed < DURATION) {
+        scrollLockRef.current.rafId = requestAnimationFrame(maintainLock);
+      } else {
+        scrollLockRef.current.active = false;
+      }
+    };
+
+    scrollLockRef.current.rafId = requestAnimationFrame(maintainLock);
+
+    scrollLockRef.current.timerId = setTimeout(() => {
+      scrollLockRef.current.active = false;
+    }, DURATION + 100);
+  };
+
+  const nextPage = (e?: React.MouseEvent) => {
+    e?.preventDefault();
+    lockScrollPosition();
     flipBookRef.current
       ?.pageFlip()
       ?.flipNext();
   };
 
-  const previousPage = () => {
+  const previousPage = (e?: React.MouseEvent) => {
+    e?.preventDefault();
+    lockScrollPosition();
     flipBookRef.current
       ?.pageFlip()
       ?.flipPrev();
   };
 
   return (
-    <section className="book-reader">
+    <section
+      ref={containerRef}
+      className={`book-reader ${isFullscreen ? "is-fullscreen" : ""}`}
+    >
+      {/* FULLSCREEN TOPBAR (Active only in fullscreen mode) */}
+      {isFullscreen && (
+        <div className="book-reader-fullscreen-topbar">
+          <div className="fullscreen-topbar-title">
+            <span className="fullscreen-book-title">{title}</span>
+            {englishTitle && (
+              <span className="fullscreen-book-subtitle">{englishTitle}</span>
+            )}
+          </div>
+          <button
+            type="button"
+            onClick={toggleFullscreen}
+            className="fullscreen-topbar-close"
+            aria-label="வெளியேறு முழுத்திரை"
+          >
+            ✕ வெளியேறு முழுத்திரை
+          </button>
+        </div>
+      )}
 
-      {/* BOOK READER HEADER */}
+      {/* BOOK READER HEADER (Hidden in fullscreen mode via CSS) */}
       <div className="book-reader-header">
         <p className="book-reader-label">
           தமிழண்ணல் நூலகம்
@@ -237,7 +387,11 @@ export default function BookReader({
                 useMouseEvents={true}
                 clickEventForward={true}
                 swipeDistance={30}
+                renderOnlyPageLengthChange={true}
                 onFlip={(event) => {
+                  if (!scrollLockRef.current.active && !isFullscreen) {
+                    lockScrollPosition();
+                  }
                   setCurrentPage(event.data + 1);
                 }}
                 className="thamizhannal-flipbook"
@@ -267,7 +421,9 @@ export default function BookReader({
               <button
                 type="button"
                 onClick={previousPage}
+                onMouseDown={(e) => e.preventDefault()}
                 disabled={currentPage <= 1}
+                aria-label="முந்தைய பக்கம்"
               >
                 ← முந்தைய பக்கம்
               </button>
@@ -289,10 +445,24 @@ export default function BookReader({
               <button
                 type="button"
                 onClick={nextPage}
+                onMouseDown={(e) => e.preventDefault()}
                 disabled={currentPage >= pages.length}
+                aria-label="அடுத்த பக்கம்"
               >
                 அடுத்த பக்கம் →
               </button>
+
+              {!isFullscreen && (
+                <button
+                  type="button"
+                  onClick={toggleFullscreen}
+                  onMouseDown={(e) => e.preventDefault()}
+                  className="fullscreen-toggle-button"
+                  aria-label="முழுத்திரையில் பார்க்க"
+                >
+                  ⛶ முழுத்திரையில் பார்க்க
+                </button>
+              )}
             </div>
           </>
         )}

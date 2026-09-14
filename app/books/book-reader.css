@@ -10,6 +10,7 @@
     ),
     #f5f0e6;
   color: #332a22;
+  overflow-anchor: none;
 }
 
 .book-reader-header {
@@ -47,11 +48,17 @@
   width: 100%;
   padding: 20px 0 35px;
   perspective: 2000px;
+  min-height: 520px;
+  contain: layout style;
+  overflow-anchor: none;
 }
 
 .thamizhannal-flipbook {
   box-shadow:
     0 25px 60px rgba(37, 28, 21, 0.3);
+  min-height: 460px;
+  contain: layout;
+  overflow-anchor: none;
 }
 
 .pdf-book-page {
@@ -86,8 +93,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  margin-top: 10px;
+  gap: 16px;
+  margin-top: 15px;
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 .book-reader-controls button {
@@ -159,6 +168,151 @@
   color: #7d332b;
 }
 
+/* Fullscreen Mode */
+.book-reader:fullscreen,
+.book-reader:-webkit-full-screen,
+.book-reader.is-fullscreen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 14px 16px;
+  margin: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #1e313d 0%, #101c23 100%);
+  color: #f7f2e7;
+  z-index: 999999;
+}
+
+.book-reader:fullscreen .book-reader-header,
+.book-reader:-webkit-full-screen .book-reader-header,
+.book-reader.is-fullscreen .book-reader-header {
+  display: none !important;
+}
+
+.book-reader:fullscreen .border-t,
+.book-reader:-webkit-full-screen .border-t,
+.book-reader.is-fullscreen .border-t {
+  display: none !important;
+}
+
+.book-reader-fullscreen-topbar {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 16px;
+  background: rgba(16, 28, 35, 0.88);
+  border: 1px solid rgba(200, 185, 158, 0.28);
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+  flex-shrink: 0;
+}
+
+.fullscreen-topbar-title,
+.fullscreen-topbar-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.fullscreen-book-title {
+  font-family: serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f2e7cf;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fullscreen-book-subtitle,
+.fullscreen-book-author {
+  font-size: 0.75rem;
+  color: #c8b79c;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fullscreen-topbar-close,
+.fullscreen-exit-btn-top {
+  border: 1px solid #8b3f3f;
+  background: #8b3f3f;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease, transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.fullscreen-topbar-close:hover,
+.fullscreen-exit-btn-top:hover {
+  background: #a84b4b;
+  transform: translateY(-1px);
+}
+
+.book-reader:fullscreen .book-reader-content,
+.book-reader:-webkit-full-screen .book-reader-content,
+.book-reader.is-fullscreen .book-reader-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.book-reader:fullscreen .flipbook-wrapper,
+.book-reader:-webkit-full-screen .flipbook-wrapper,
+.book-reader.is-fullscreen .flipbook-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 6px 0;
+  max-height: calc(100vh - 120px);
+}
+
+.book-reader:fullscreen .book-reader-controls,
+.book-reader:-webkit-full-screen .book-reader-controls,
+.book-reader.is-fullscreen .book-reader-controls {
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.book-reader-controls button.fullscreen-toggle-button,
+.book-reader-controls button.fullscreen-toggle-btn {
+  background: #1e2e38;
+  border-color: #b08a3e;
+  color: #f2e7cf;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+}
+
+.book-reader-controls button.fullscreen-toggle-button:hover,
+.book-reader-controls button.fullscreen-toggle-btn:hover {
+  background: #b08a3e;
+  color: #fff;
+}
+
 /* Mobile */
 
 @media (max-width: 600px) {
@@ -179,17 +333,52 @@
   }
 
   .book-reader-controls {
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
     width: 100%;
   }
 
   .book-reader-controls button {
-    padding: 11px 12px;
+    padding: 9px 12px;
     font-size: 0.78rem;
   }
 
   .book-page-counter {
     min-width: 45px;
     font-size: 0.85rem;
+  }
+
+  /* Fullscreen on mobile */
+  .book-reader:fullscreen,
+  .book-reader:-webkit-full-screen,
+  .book-reader.is-fullscreen {
+    padding: 8px 6px;
+  }
+
+  .book-reader-fullscreen-topbar {
+    padding: 6px 10px;
+    gap: 6px;
+  }
+
+  .fullscreen-book-title {
+    font-size: 0.82rem;
+  }
+
+  .fullscreen-book-author {
+    display: none;
+  }
+
+  .fullscreen-topbar-close,
+  .fullscreen-exit-btn-top {
+    padding: 5px 10px;
+    font-size: 0.72rem;
+  }
+
+  .book-reader:fullscreen .flipbook-wrapper,
+  .book-reader:-webkit-full-screen .flipbook-wrapper,
+  .book-reader.is-fullscreen .flipbook-wrapper {
+    max-height: calc(100vh - 105px);
   }
 }
